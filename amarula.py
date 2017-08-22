@@ -1,9 +1,5 @@
 #!/usr/bin/python
-#-*- coding: utf-8 -*-
-# pyBotnet v1.0
-# creation date: 17/03/2016
-# Social media:  https://www.facebook.com/msoliveroriginal
-# Youtube Channel: https://www.youtube.com/channel/UCp9cDi1ibw7D8bjFMm6BZHQ
+
 import sys
 import os
 import socket # For function conn(): && ipLocal():

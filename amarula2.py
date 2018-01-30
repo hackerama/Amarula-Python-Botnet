@@ -1,4 +1,5 @@
 #!/usr/bin/python
+
 import glob # For function listArq(): list files on the computer
 import os
 import platform # For variable pcName

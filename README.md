@@ -27,7 +27,9 @@ Versão: **1.0** *(version)*
 https://sourceforge.net/projects/pyhook/
 
 ## Configuração *(setup)*
-Algumas variáveis precisarão ser definidas ou alteradas, para que a conexão com o IRC seja feita corretamente: 
+Algumas variáveis precisarão ser definidas ou alteradas, para que a conexão do BOT com o IRC seja feita corretamente. <br>
+Toda a administração dos BOTs será feita através de um cliente IRC comum. O Administrador envirá comandos para o canal onde <br>
+os BOTs estarão conectados e intrepretarão as mensagens enviadas ao canal como comandos. 
 
 ***VARIÁVEIS:*** *(variables)* <br>
 

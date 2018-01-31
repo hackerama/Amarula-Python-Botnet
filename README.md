@@ -1,15 +1,22 @@
 # Amarula IRC Botnet v1.0
 <h4> Abacatch Version </h4>
 
-Keylloger feito em **Python 2.7** *(written in Python 2.7)* <br>
-Testado em: **Windows 10** *(tested on)*<br>
+Botnet client feito **Python 2.7** *(written in Python 2.7)* <br>
+Testado em: **Windows XP, 8, 10**, *(tested on)*<br>
 Escrito por: **Carlos Néri Correia** *(coded by)* <br>
 Versão: **1.0** *(version)*
 
 ## Funções *(features)*
+- Executar comandos shell *(shell command execution)* <br>
+- Listar diretório atual do bot *(list current working directory)* <br>
+- Listar todos os arquivos de um *diretorio (list all directory files)* <br>
+- Obter ip local e externo do bot *(get local and WAN bot IP)* <br>
 - Captura de teclas digitadas pelo cliente em tempo real *(real-time keylogging)* <br>
-- Armazenamento local de logs *(local storage)* <br> 
-- Envio de logs para servidor remoto *(send logs to remote server)*<br>
+- Download de arquivos da web via HTTP *(HTTP web downloading) <br>
+- Upload de arquivos para servidor web via HTTP *(upload bot files to web server)
+- Envio de logs para servidor remoto *(send logs to remote server)* <br>
+- Deletar arquivos no BOT *(delete files)* <br>
+- Executar arquivos no BOT *(run files)*
 - Persistência *(persistence)*<br>
 
 ## Instalação *(install)*

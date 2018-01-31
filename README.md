@@ -2,7 +2,7 @@
 <h4> Abacatch Version </h4>
 
 
-Botnet client feito **Python 2.7** *(written in Python 2.7)* <br>
+Botnet client feito em **Python 2.7** *(written in Python 2.7)* <br>
 Testado em: **Windows XP, 8, 10**, *(tested on)*<br>
 Escrito por: **Carlos Néri Correia** *(coded by)* <br>
 Versão: **1.0** *(version)*

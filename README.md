@@ -44,7 +44,7 @@ Canal do IRC ao qual o bot irá se conectar. <br>
 É interpretando as mensagens enviadas para o canal que o BOT irá executar os comandos internamente no cliente.
 
 ***botPass*** *(sets password to activate and connect to the BOTS)* <br>
-Define um passoWrd para ativar, conectar e controlar os bots no canal <br>
+Define um passoword para ativar, conectar e controlar os bots no canal <br>
  
 ***botAdmi*** *(Admin Name - NOT OBLIGATORY)* <br>
 Define um nome pelo qual os zumbis te chamarão <br>

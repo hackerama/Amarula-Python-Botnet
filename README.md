@@ -60,7 +60,7 @@ Não é obrigatório. <br>
 Página de upload no servidor remoto, para a função de envio remoto. <br>
 Será criado um arquivo *capt-(nome do PC).txt* na mesma pasta de upload.php, no servidor.  
 
-***ldir=*** *(sets local directory, dropping directory)* <br>
+***ldir*** *(sets local directory, dropping directory)* <br>
 Diretório local, onde será salvo o arquivo de log. <br>
 Diretório para o qual o .exe se copia para ser executado em persistência quando a máquina reiniciar.
 

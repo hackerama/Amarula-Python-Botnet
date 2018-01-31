@@ -68,10 +68,6 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
     
 ## Controlando os bots *(usage)*
 
-
-- [sair] para que os bots ativos saiam do canal <br>
-		
-
 - [dir] para vizualizar o diretorio atual do zumbi <br>
 		
 		$ USAGE: ls <nickdobot> <br>
@@ -131,3 +127,12 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 		
 		$ USAGE: shell <comando> <nickdobot>
 		$ Ex: shell echo HACKED hack.txt && DIR hack.txt DESKTOP-PC-3456
+		
+- [sair] para que os bots ativos saiam do canal <br>
+
+		$ USAGE: sair		
+		
+- [sair] matar todos os BOTs ativos <br>
+  Todos os zumbis ativos desconectam-se do IRC
+		
+		$ USAGE: matar		

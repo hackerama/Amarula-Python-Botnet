@@ -29,7 +29,7 @@ https://sourceforge.net/projects/pyhook/
 ## Configuração *(setup)*
 Algumas variáveis precisarão ser definidas ou alteradas, para que a conexão com o IRC seja feita corretamente: 
 
-**VARIÁVEIS:***(variables)* <br>
+***VARIÁVEIS:*** *(variables)* <br>
 
 ***ircServer*** *(sets IRC server address)* <br>
 Endereço do servidor IRC ao qual o BOT irá se conectar. <br>

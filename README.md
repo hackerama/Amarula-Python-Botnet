@@ -1,5 +1,8 @@
 # Amarula IRC Botnet v1.0
 <h4> Abacatch Version </h4>
+O Amarula IRC Botnet é um *botnet client* codado em Python 2.7. O malware nada mais é do que um cliente IRC especialmente construído, que se conecta a um server IRC e entra em um canal como se fosse um usuario comum.
+O Administrador, por sua vez, também estará conectado ao canal, mas através de um programa de cliente IRC normal (como o Hexchat), de forma que, toda vez que o Adm envia uma mensagem para o canal, o BOT interpreta essa mensagem como um comando a ser executado.
+no sistema.  
 
 Botnet client feito **Python 2.7** *(written in Python 2.7)* <br>
 Testado em: **Windows XP, 8, 10**, *(tested on)*<br>

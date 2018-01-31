@@ -83,6 +83,11 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 
 ![Screenshot](https://preview.ibb.co/kwPyzR/help.png)
 
+- [help] para listar os comandos disponíveis <br>
+		
+		$ USAGE: help <nickdobot> <br>
+		$ Ex: help DESKTOP-PC-3456
+
 - [dir] para vizualizar o diretorio atual do zumbi <br>
 		
 		$ USAGE: ls <nickdobot> <br>

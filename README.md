@@ -33,9 +33,6 @@ Algumas variáveis precisarão ser definidas ou alteradas, para que a conexão c
 
 ***ircServer*** *(sets IRC server address)*
 Endereço do servidor IRC ao qual o BOT irá se conectar. <br>
-***ldir*** *(sets local directory, dropping directory)*<br>
-Diretório local, onde será salvo o arquivo de log. <br>
-Diretório para o qual o .exe se copia para ser executado em persistência quando a máquina reiniciar.
 
 ***ircPwdCha*** *(sets IRC channel password)*
 Define o password do canal IRC ao qual o bot irá se conectar. <br>
@@ -46,9 +43,22 @@ Importante setar um password no canal para que outras pessoas não entrem e poss
 Canal do IRC ao qual o bot irá se conectar. <br>
 É interpretando as mensagens enviadas para o canal que o BOT irá executar os comandos internamente no cliente.
 
+***botPass*** *(sets password to activate and connect to the BOTS)*
+Define um passord para se ativar, conectar e controlar os bots no canal <br>
+
+***botAdmi=*** *(Admin Name - NOT OBLIGATORY)*
+Define um nome pelo qual os zumbis te chamarão
+Não é obrigatório.
+
 ***urlUpload*** *(Upload page on remote server)*<br>
 Página de upload no servidor remoto, para a função de envio remoto. <br>
 Será criado um arquivo *capt-(nome do PC).txt* na mesma pasta de upload.php, no servidor.  
+
+***ldir*** *(sets local directory, dropping directory)*<br>
+Diretório local, onde será salvo o arquivo de log. <br>
+Diretório para o qual o .exe se copia para ser executado em persistência quando a máquina reiniciar.
+
+
 
 **COMPILAR** *(compile)*
 

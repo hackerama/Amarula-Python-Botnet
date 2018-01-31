@@ -25,8 +25,16 @@ O Administrador, por sua vez, também estará conectado ao canal, mas através d
 - Persistência *(persistence)*<br>
 
 ## Instalação *(install)*
+Faça o download do ZIP ou clone o repositório:
+    
+    $ git clone https://github.com/hackerama/Amarula-Python-Botnet.git
+
+Algumas bibliotecas do python são requeridas:   
+    
     $ pip install requests
     $ pip install pypiwin32
+
+A biblioteca pyHook, também é exigida. abixo o link para baixar o executável de instalação.
 
 **Download pyHook**
 https://sourceforge.net/projects/pyhook/

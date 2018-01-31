@@ -77,7 +77,7 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 
 ## Compilar *(compile)*
 
-    $ pyinstaller -w amarula.py --onefile
+    		$ pyinstaller -w amarula.py --onefile
     
 ## Controlando os bots *(usage)*
 

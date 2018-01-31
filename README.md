@@ -36,6 +36,8 @@ Algumas variáveis precisarão ser definidas ou alteradas, para que a conexão d
 Toda a administração dos BOTs será feita através de um cliente IRC comum. O Administrador enviará comandos para o canal onde os BOTs estarão conectados e intrepretarão as mensagens enviadas como comandos. 
 
 ***VARIÁVEIS:*** *(variables)* <br>
+![GitHub Logo](https://ibb.co/hKPyzR)
+Format: ![Alt Text](url)
 ![alt tag]("https://ibb.co/hKPyzR" "Variaveis")
 
 ***ircServer*** *(sets IRC server address)* <br>

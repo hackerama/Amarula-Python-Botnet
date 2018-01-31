@@ -73,6 +73,8 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
     
 ## Controlando os bots *(usage)*
 
+![Screenshot](https://preview.ibb.co/kwPyzR/help.png)
+
 - [dir] para vizualizar o diretorio atual do zumbi <br>
 		
 		$ USAGE: ls <nickdobot> <br>

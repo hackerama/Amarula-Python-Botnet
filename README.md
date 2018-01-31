@@ -9,7 +9,7 @@ Versão: **1.0** *(version)*
 
 ## Como funciona? *(how it works)*
 O Amarula IRC Botnet é um *botnet client* codado em Python 2.7. O malware nada mais é do que um cliente IRC, especialmente construído, que se conecta a um server IRC e entra em um canal como se fosse um usuario comum.
-O Administrador, por sua vez, também estará conectado ao canal, mas através de um programa de cliente IRC normal (como o Hexchat), de forma que, toda vez que o Adm envia uma mensagem para o canal, o BOT interpreta essa mensagem como um comando a ser executado no sistema. São diversas as vantagens de administrar os BOTs através do IRC - Os servers são ativos 24h, não é necessário abrir portas no PC, o IRC é um protocolo teoricamente confiável, entre outros.
+O Administrador, por sua vez, também estará conectado ao canal, mas através de um programa de cliente IRC normal (como o Hexchat), de forma que, toda vez que o Adm envia uma mensagem para o canal, o BOT interpreta essa mensagem como um comando a ser executado no sistema. São diversas as vantagens de administrar os BOTs através do IRC - Os servers são ativos 24h, não é necessário abrir portas no PC, o IRC é um protocolo teoricamente confiável, entre outras.
 
 ## Funções *(features)*
 - Executar comandos shell *(shell command execution)* <br>

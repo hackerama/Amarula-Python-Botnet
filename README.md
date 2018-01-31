@@ -9,8 +9,7 @@ Versão: **1.0** *(version)*
 
 ## Como funciona? *(how it works)*
 O Amarula IRC Botnet é um *botnet client* codado em Python 2.7. O malware nada mais é do que um cliente IRC, especialmente construído, que se conecta a um server IRC e entra em um canal como se fosse um usuario comum.
-O Administrador, por sua vez, também estará conectado ao canal, mas através de um programa de cliente IRC normal (como o Hexchat), de forma que, toda vez que o Adm envia uma mensagem para o canal, o BOT interpreta essa mensagem como um comando a ser executado.
-no sistema.  
+O Administrador, por sua vez, também estará conectado ao canal, mas através de um programa de cliente IRC normal (como o Hexchat), de forma que, toda vez que o Adm envia uma mensagem para o canal, o BOT interpreta essa mensagem como um comando a ser executado no sistema. São diversas as vantagens de administrar os BOTs através do IRC - Os servers são ativos 24h, não é necessário abrir portas no PC, o IRC é um protocolo teoricamente confiável, entre outros.
 
 ## Funções *(features)*
 - Executar comandos shell *(shell command execution)* <br>
@@ -34,8 +33,7 @@ https://sourceforge.net/projects/pyhook/
 
 ## Configuração *(setup)*
 Algumas variáveis precisarão ser definidas ou alteradas, para que a conexão do BOT com o IRC seja feita corretamente. <br>
-Toda a administração dos BOTs será feita através de um cliente IRC comum. O Administrador enviará comandos para o  <br>
-canal onde os BOTs estarão conectados e intrepretarão as mensagens enviadas como comandos. 
+Toda a administração dos BOTs será feita através de um cliente IRC comum. O Administrador enviará comandos para o canal onde os BOTs estarão conectados e intrepretarão as mensagens enviadas como comandos. 
 
 ***VARIÁVEIS:*** *(variables)* <br>
 
@@ -112,7 +110,7 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 
 - [start keylog] para ativar o keylogger
   O arquivo de log será upado para o servidor web a cada 100 caracteres digitados. <br>
-  Será iniciado u novo processo no sistema do BOT para o keylogger.		
+  Será iniciado um novo processo no sistema do BOT para o keylogger.		
 
 		$ USAGE: keylog start <nickdobot>
 		$ Ex: keylog start DESKTOP-PC-3456

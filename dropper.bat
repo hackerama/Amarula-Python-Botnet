@@ -1,6 +1,6 @@
 @echo off
 mkdir %AppData%\Amarula
-echo Copiando arquivos para diretorio de execução.
+echo Copiando arquivos para diretorio de execuÃ§Ã£o.
 copy amarula.exe %AppData%\Amarula
 cd %AppData%\Amarula\
 echo Iniciando arquivo:

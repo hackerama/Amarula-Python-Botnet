@@ -291,8 +291,7 @@ def main():
 
 	ircSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	#time.sleep(40) # Esperar a inicializacao do network card (uncomment to use)
-	print ldir
-	print type(ldir)
+
 	conn()
 	join(ircChanne)
 	login = False

@@ -34,7 +34,7 @@ Algumas bibliotecas do python são requeridas:
 	$ pip install requests
 	$ pip install pypiwin32
 
-A biblioteca pyHook, também é exigida. abixo o link para baixar o executável de instalação.
+A biblioteca pyHook, também é exigida. abaixo o link para baixar o executável de instalação.
 
 **Download pyHook**
 https://sourceforge.net/projects/pyhook/

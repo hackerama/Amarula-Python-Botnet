@@ -36,6 +36,7 @@ Algumas variáveis precisarão ser definidas ou alteradas, para que a conexão d
 Toda a administração dos BOTs será feita através de um cliente IRC comum. O Administrador enviará comandos para o canal onde os BOTs estarão conectados e intrepretarão as mensagens enviadas como comandos. 
 
 ***VARIÁVEIS:*** *(variables)* <br>
+<center><img src="https://ibb.co/hKPyzR"></center>
 
 ***ircServer*** *(sets IRC server address)* <br>
 Endereço do servidor IRC ao qual o BOT irá se conectar. <br>
@@ -68,7 +69,7 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 
 ## Compilar *(compile)*
 
-    $ pyinstaller -w WinService.py --onefile
+    $ pyinstaller -w amarula.py --onefile
     
 ## Controlando os bots *(usage)*
 

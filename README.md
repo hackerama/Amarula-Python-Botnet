@@ -83,6 +83,12 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 
 ![Screenshot](https://preview.ibb.co/kwPyzR/help.png)
 
+- [login] para se conectar aos BOTS no canal <br>
+  A senha padrão é "raise".
+  
+		$ USAGE: login <senha> br>
+		$ Ex: login raise
+		
 - [help] para listar os comandos disponíveis <br>
 		
 		$ USAGE: help <nickdobot> <br>
@@ -156,3 +162,6 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
   Todos os zumbis ativos desconectam-se do IRC
 		
 		$ USAGE: matar		
+## Demonstração *(demo)*
+
+https://youtu.be/yYqAwiaAgrA

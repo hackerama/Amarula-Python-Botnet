@@ -2,14 +2,14 @@
 # -*-coding:utf-8-*-
 # coder: _carlosnericorreia_(badfly)
 # email: hackerama@protonmail.com
-# Amarula iRC Botnet v1.0 - Abacatch Version
+# Amarula iRC Botnet v2.1 - Panama Version
 
 
 
 #######################################################################################################################
 #                                                                                                                     #
 # -----------------------------------[+] A M A R U L A    I R C    B O T N E T [+] -----------------------------------#
-#                                                  Plum Version                                                   #
+#                                                  Panama Version                                                   #
 #                                                                                                                     #
 #######################################################################################################################
 

